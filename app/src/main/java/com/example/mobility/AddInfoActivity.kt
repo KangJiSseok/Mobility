@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.DatePicker
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mobility.databinding.ActivityAddInfoBinding
+import java.util.Calendar
 
 
 class AddInfoActivity : AppCompatActivity() {
@@ -17,5 +18,4 @@ class AddInfoActivity : AppCompatActivity() {
 
 
     }
-
 }

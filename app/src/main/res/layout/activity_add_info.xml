@@ -4,22 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="20dp">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="정비 정보 등록"
         android:textSize="30dp"
-        android:layout_margin="20dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_marginBottom="20dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
-        android:layout_margin="20dp">
+        android:layout_marginBottom="10dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -28,20 +29,52 @@
             android:textSize="20dp"
             android:textStyle="bold"
             android:layout_marginBottom="10dp"/>
-        <EditText
-            android:layout_width="300dp"
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="교체 당시 주행거리"
-            android:id="@+id/engOdo"
-            android:layout_marginBottom="10dp"
-            android:inputType="number" />
-        <EditText
-            android:layout_width="300dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="주행거리"
+                android:textSize="18dp"
+                android:layout_marginRight="10dp"/>
+            <EditText
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:hint="주행거리 (km)"
+                android:id="@+id/engOdo"
+                android:inputType="number" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="교체 날짜"
-            android:id="@+id/engDate"
-            android:inputType="datetime"
-            android:layout_marginBottom="20dp" />
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="교체날짜"
+                android:textSize="18dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="25dp"/>
+            <DatePicker
+                android:id="@+id/engDate"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:calendarViewShown="false"
+                android:datePickerMode="spinner"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginBottom="10dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -49,21 +82,54 @@
             android:text="에어컨 필터"
             android:textSize="20dp"
             android:textStyle="bold"
-            android:layout_marginBottom="10dp" />
-        <EditText
-            android:layout_width="300dp"
+            android:layout_marginBottom="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="교체 당시 주행거리"
-            android:id="@+id/acOdo"
-            android:layout_marginBottom="10dp"
-            android:inputType="number"/>
-        <EditText
-            android:layout_width="300dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="주행거리"
+                android:textSize="18dp"
+                android:layout_marginRight="10dp"/>
+            <EditText
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:hint="주행거리 (km)"
+                android:id="@+id/acOdo"
+                android:inputType="number" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="교체 날짜"
-            android:id="@+id/acDate"
-            android:inputType="datetime"
-            android:layout_marginBottom="20dp"/>
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="교체날짜"
+                android:textSize="18dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="25dp"/>
+            <DatePicker
+                android:id="@+id/acDate"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:calendarViewShown="false"
+                android:datePickerMode="spinner"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginBottom="10dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -72,20 +138,46 @@
             android:textSize="20dp"
             android:textStyle="bold"
             android:layout_marginBottom="10dp"/>
-        <EditText
-            android:layout_width="300dp"
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="교체 당시 주행거리"
-            android:id="@+id/tireOdo"
-            android:layout_marginBottom="10dp"
-            android:inputType="number"/>
-        <EditText
-            android:layout_width="300dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="주행거리"
+                android:textSize="18dp"
+                android:layout_marginRight="10dp"/>
+            <EditText
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:hint="주행거리 (km)"
+                android:id="@+id/tireOdo"
+                android:inputType="number" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="교체 날짜"
-            android:id="@+id/tireDate"
-            android:inputType="datetime"
-            android:layout_marginBottom="10dp"/>
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="교체날짜"
+                android:textSize="18dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="25dp"/>
+            <DatePicker
+                android:id="@+id/tireDate"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:calendarViewShown="false"
+                android:datePickerMode="spinner"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+
 
 
 
@@ -94,8 +186,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="등록하기"
-            android:layout_marginTop="30dp"
             android:id="@+id/submit" />
-    </LinearLayout>
 
 </LinearLayout>
