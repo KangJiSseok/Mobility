@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Mobility"
         tools:targetApi="31">
         <activity
+            android:name=".AddInfoActivity"
+            android:exported="false" />
+        <activity
             android:name=".RepairInfoActivity"
             android:exported="false" />
         <activity

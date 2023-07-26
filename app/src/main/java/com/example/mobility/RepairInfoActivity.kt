@@ -10,4 +10,5 @@ class RepairInfoActivity : AppCompatActivity() {
         val binding = ActivityRepairInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
+    
 }

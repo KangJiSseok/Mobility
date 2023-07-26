@@ -1,5 +1,6 @@
 package com.example.mobility
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.mobility.databinding.ActivityCarInfoBinding
@@ -17,6 +18,11 @@ class CarInfoActivity : AppCompatActivity() {
             val odo = binding.odo.text.toString() // 주행거리
 
             // 차량 정보 등록
+
+
+            // AddInfoActivity 실행
+            val intent = Intent(this, AddInfoActivity::class.java)
+            startActivity(intent)
         }
     }
 }
