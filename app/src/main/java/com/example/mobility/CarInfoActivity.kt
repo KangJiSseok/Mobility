@@ -13,6 +13,8 @@ class CarInfoActivity : AppCompatActivity() {
         val binding = ActivityCarInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        title = "차량 정보 등록"
+
         // 차종, 연식, 주행 거리를 입력받음
         binding.submit.setOnClickListener {
             val car = binding.car.text.toString().trim() // 차종

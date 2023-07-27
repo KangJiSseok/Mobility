@@ -16,6 +16,8 @@ class RepairInfoActivity : AppCompatActivity() {
         val binding = ActivityRepairInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        title = "남은 주행 거리와 기간"
+
         // intent 값 받기
         val intent: Intent = getIntent()
 

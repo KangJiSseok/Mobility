@@ -25,6 +25,8 @@ class AddInfoActivity : AppCompatActivity() {
         val binding = ActivityAddInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        title = "정비 정보 등록"
+
 
         // intent 값 받기
         val intent: Intent = getIntent()

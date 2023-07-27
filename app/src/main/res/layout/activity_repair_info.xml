@@ -4,14 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="남은 주행 거리와 기간"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:layout_marginBottom="10dp"
-        android:padding="20dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"

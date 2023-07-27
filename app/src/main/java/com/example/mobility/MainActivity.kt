@@ -15,6 +15,8 @@ class MainActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        title = "모빌리티 관리 앱"
+
 
         binding.btnSkip.setOnClickListener {
             val intent = Intent(this, CarInfoActivity::class.java)
