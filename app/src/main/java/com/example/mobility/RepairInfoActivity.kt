@@ -83,13 +83,13 @@ class RepairInfoActivity : AppCompatActivity() {
         val repairDate = 365
 
         // 주행거리 또는 교체주기 둘 다 초과한 경우
-        if (diffOdo > repairOdo && diffDate > repairDate) {
+        if (diffOdo >= repairOdo && diffDate >= repairDate) {
             return arrayOf("both", diffOdo, diffDate)
         }
-        else if (diffOdo > repairOdo) { // 주행 거리만 초과한 경우
+        else if (diffOdo >= repairOdo) { // 주행 거리만 초과한 경우
             return arrayOf("odo", diffOdo, diffDate)
         }
-        else if (diffDate > repairDate) { // 교체 주기만 초과한 경우
+        else if (diffDate >= repairDate) { // 교체 주기만 초과한 경우
             return arrayOf("date", diffOdo, diffDate)
         }
 
