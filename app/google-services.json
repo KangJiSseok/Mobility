@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "372985380433",
+    "project_id": "mobiltyapp-554fc",
+    "storage_bucket": "mobiltyapp-554fc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:372985380433:android:19e6dc4d1e68ad92bfc270",
+        "android_client_info": {
+          "package_name": "com.example.mobility"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "372985380433-9nus9nee188ktuk6hh8l7b6jvl80dojh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjxSCwlOqWApOD8J694v2ZC4wb6QivejI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "372985380433-9nus9nee188ktuk6hh8l7b6jvl80dojh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
