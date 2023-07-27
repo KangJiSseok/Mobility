@@ -27,7 +27,7 @@ class RepairInfoActivity : AppCompatActivity() {
         val engDate = intent.getStringExtra("eng-date").toString()
 
         // 엔진오일
-        val (erepairNeeded, ediffOdo, ediffDate) = calcEngineOil(odo, engOdo, engDate)
+        val (erepairNeeded, ediffOdo, ediffDate) = calculate(odo, engOdo, engDate, 15000, 365)
 
         val engOdoRatio: Double = (ediffOdo.toString().toDouble() / 15000) * 100
         val engDateRatio: Double = (ediffDate.toString().toDouble() / 365) * 100
@@ -60,9 +60,9 @@ class RepairInfoActivity : AppCompatActivity() {
     }
 
     /*
-    * 엔진오일 교체 주기 계산
+    * 교체 주기 계산 함수
     */
-    fun calcEngineOil(totalOdo: String, odo: String, date: String): Array<Any> {
+    fun calculate(totalOdo: String, odo: String, date: String, repairOdo: Int, repairDate: Int): Array<Any> {
         // 교체 주행거리와 현재 누적 주행거리의 차
         val totalOdos = totalOdo.toInt()
         val odos = odo.toInt()
@@ -77,11 +77,7 @@ class RepairInfoActivity : AppCompatActivity() {
 
         // 교체한지 며칠 지났는지 일수로 계산
         var diffDate = (today.time.time - dateValue.time) / (60 * 60 * 24 * 1000)
-
-        // 정식 교체 주기 (주행거리)
-        val repairOdo = 15000
-        val repairDate = 365
-
+        
         // 주행거리 또는 교체주기 둘 다 초과한 경우
         if (diffOdo >= repairOdo && diffDate >= repairDate) {
             return arrayOf("both", diffOdo, diffDate)
