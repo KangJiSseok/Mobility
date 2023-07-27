@@ -25,37 +25,8 @@ class MainActivity : AppCompatActivity() {
 
         //회원가입 시작
         binding.btnGotoSignup.setOnClickListener {
-            val email = binding.ID.text.toString()
-            val password = binding.PassWord.text.toString()
-
-            MyApplication.auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this){task ->
-                binding.ID.text.clear()
-                binding.PassWord.text.clear()
-                //회원가입 성공, 실패 판단
-                if(task.isSuccessful)
-                {
-                    MyApplication.auth.currentUser?.sendEmailVerification()?.addOnCompleteListener { sendTask ->
-                        if(sendTask.isSuccessful)
-                        {
-                            Toast.makeText(baseContext,"회원가입 성공, 전송된 메일을 확인해 주세요.",Toast.LENGTH_SHORT).show()
-                            //로그아웃화면으로
-
-
-                        }
-                        else
-                        {
-                            Toast.makeText(baseContext,"메일 발송 실패",Toast.LENGTH_SHORT).show()
-                            //로그아웃화면으로
-
-                        }
-                    }
-                }
-                else
-                {
-                    Toast.makeText(baseContext,"회원가입 실패",Toast.LENGTH_SHORT).show()
-                    //로그아웃화면으로
-                }
-            }
+            val intent = Intent(this, SignUpActivity::class.java)
+            startActivity(intent)
         }
 
         //로그인 시작
