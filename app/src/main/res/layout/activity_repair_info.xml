@@ -4,6 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="남은 주행 거리와 기간"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:layout_marginBottom="10dp"
+        android:padding="20dp"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -12,27 +21,39 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="엔진오일"
+            android:text="엔진오일 및 오일필터"
             android:textSize="20dp"
+            android:textStyle="bold"
             android:layout_marginBottom="10dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="주행거리"/>
+            android:text="주행거리"
+            android:textSize="16dp"/>
         <ProgressBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="?android:attr/progressBarStyleHorizontal"
-            android:scaleY="2"/>
+            android:scaleY="2"
+            android:id="@+id/engOdoProgs" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="기간"/>
+            android:text="기간"
+            android:textSize="16dp"/>
         <ProgressBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="?android:attr/progressBarStyleHorizontal"
-            android:scaleY="2"/>
+            android:scaleY="2"
+            android:id="@+id/engDateProgs"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="교체까지 3000km, 120일 남았습니다."
+            android:id="@+id/engText" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -43,13 +64,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="에어컨필터"
+            android:text="에어컨 필터"
             android:textSize="20dp"
+            android:textStyle="bold"
             android:layout_marginBottom="10dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="주행거리"/>
+            android:text="주행거리"
+            android:textSize="16dp"/>
         <ProgressBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -58,12 +81,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="기간"/>
+            android:text="기간"
+            android:textSize="16dp"/>
         <ProgressBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="?android:attr/progressBarStyleHorizontal"
             android:scaleY="2"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="기간이 도달하여 교체해야 합니다."
+            android:id="@+id/acText" />
     </LinearLayout>
 
     <LinearLayout
@@ -76,11 +106,13 @@
             android:layout_height="wrap_content"
             android:text="타이어"
             android:textSize="20dp"
+            android:textStyle="bold"
             android:layout_marginBottom="10dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="주행거리"/>
+            android:text="주행거리"
+            android:textSize="16dp"/>
         <ProgressBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -89,12 +121,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="기간"/>
+            android:text="기간"
+            android:textSize="16dp"/>
         <ProgressBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="?android:attr/progressBarStyleHorizontal"
             android:scaleY="2"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="주행거리가 도달하여 교체해야 합니다."
+            android:id="@+id/tireText" />
     </LinearLayout>
 
 </LinearLayout>

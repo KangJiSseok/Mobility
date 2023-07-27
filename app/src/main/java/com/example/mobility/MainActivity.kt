@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        binding.btnLogin.setOnClickListener {
+        binding.btnSkip.setOnClickListener {
             val intent = Intent(this, CarInfoActivity::class.java)
             startActivity(intent)
         }
