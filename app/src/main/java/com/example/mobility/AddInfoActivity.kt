@@ -3,8 +3,10 @@ package com.example.mobility
 import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.widget.DatePicker
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mobility.databinding.ActivityAddInfoBinding
 import org.w3c.dom.Text
@@ -20,6 +22,16 @@ class AddInfoActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
+        // intent 값 받기
+        val intent: Intent = getIntent()
+        val array = intent.getStringArrayExtra("infoArray")
+
+        val car = array?.get(0)
+        val year = array?.get(1)
+        val odo = array?.get(2)
+
+        // 값 전달 테스트
+        Toast.makeText(this, "차종: ${car}, 연식: ${year}, 주행거리: ${odo}", Toast.LENGTH_SHORT).show()
     }
 
     /*
