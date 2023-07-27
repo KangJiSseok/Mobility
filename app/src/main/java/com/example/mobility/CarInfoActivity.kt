@@ -3,6 +3,8 @@ package com.example.mobility
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
+import androidx.core.text.isDigitsOnly
 import com.example.mobility.databinding.ActivityCarInfoBinding
 
 class CarInfoActivity : AppCompatActivity() {
@@ -17,6 +19,14 @@ class CarInfoActivity : AppCompatActivity() {
             val year = binding.year.text.toString().trim() // 연식
             val odo = binding.odo.text.toString().trim() // 주행거리
 
+            // 입력 유효성 검사
+            if (car.isNullOrEmpty() || year.isNullOrEmpty() || odo.isNullOrEmpty()) {
+                var loginfailalert = AlertDialog.Builder(this)
+                loginfailalert.setMessage("모든 입력란을 채워 주세요.")
+                loginfailalert.setPositiveButton("확인", null)
+                loginfailalert.show()
+                return@setOnClickListener
+            }
             
             // 차량 정보 등록 (서버)
 
