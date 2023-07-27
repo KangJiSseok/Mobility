@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -10,20 +11,22 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name=".MyApplication"
         android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar"
         tools:targetApi="31">
         <activity
-            android:name="com.example.mobility.AddInfoActivity"
+            android:name=".SignUpActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.mobility.CarInfoActivity"
+            android:name=".AddInfoActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.mobility.RepairInfoActivity"
+            android:name=".CarInfoActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.mobility.MainActivity"
+            android:name=".RepairInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

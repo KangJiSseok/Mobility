@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         //회원가입 시작
-        binding.btnSignup.setOnClickListener {
+        binding.btnGotoSignup.setOnClickListener {
             val email = binding.ID.text.toString()
             val password = binding.PassWord.text.toString()
 
