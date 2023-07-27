@@ -35,17 +35,24 @@ class RepairInfoActivity : AppCompatActivity() {
         binding.engDateProgs.progress = engDateRatio.toInt()
 
         val isEngRepair = erepairNeeded.toString().toBoolean()
-        if (!isEngRepair) {
+        Log.d("ediffOdo", ediffOdo.toString())
+
+        if (erepairNeeded.toString() == "false") {
             binding.engText.text = "교체까지 ${15000 - ediffOdo.toString().toInt()}km, ${365 - ediffDate.toString().toInt()}일 남았습니다."
         }
         else {
-            if (ediffOdo.toString().toInt() < 0) {
+            if (erepairNeeded.toString() == "odo") {
                 binding.engOdoProgs.progress = 100
                 binding.engText.text = "주행거리가 도달하여 엔진오일을 교체해야 합니다."
             }
-            if (ediffDate.toString().toInt() < 0) {
+            if (erepairNeeded.toString() == "date") {
                 binding.engDateProgs.progress = 100
                 binding.engText.text = "교체기간이 도달하여 엔진오일을 교체해야 합니다."
+            }
+            if (erepairNeeded.toString() == "both") {
+                binding.engOdoProgs.progress = 100
+                binding.engDateProgs.progress = 100
+                binding.engText.text = "주행거리 및 교체기간이 모두 도달하여 엔진오일을 교체해야 합니다."
             }
         }
     }
@@ -71,16 +78,21 @@ class RepairInfoActivity : AppCompatActivity() {
 
         // 정식 교체 주기 (주행거리)
         val repairOdo = 15000
-        val repairDay = 365
+        val repairDate = 365
 
-        // 주행거리 또는 교체주기 둘 중 하나가 정식 교체 주기를 초과한 경우
-        if (diffOdo > repairOdo || diffDate > repairDay) {
-            // 교체가 필요함.
-            return arrayOf(true, diffOdo, diffDate)
+        // 주행거리 또는 교체주기 둘 다 초과한 경우
+        if (diffOdo > repairOdo && diffDate > repairDate) {
+            return arrayOf("both", diffOdo, diffDate)
+        }
+        else if (diffOdo > repairOdo) { // 주행 거리만 초과한 경우
+            return arrayOf("odo", diffOdo, diffDate)
+        }
+        else if (diffDate > repairDate) { // 교체 주기만 초과한 경우
+            return arrayOf("date", diffOdo, diffDate)
         }
 
-
-        return arrayOf(false, diffOdo, diffDate)
+        // 둘다 초과하지 않은 경우
+        return arrayOf("false", diffOdo, diffDate)
     }
     
 }
