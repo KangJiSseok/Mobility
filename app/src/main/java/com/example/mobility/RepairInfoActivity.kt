@@ -134,7 +134,7 @@ class RepairInfoActivity : AppCompatActivity() {
     /*
     * 교체 주기 계산 함수
     */
-    fun calculate(totalOdo: String, odo: String, date: String, repairOdo: Int, repairDate: Int): Array<Any> {
+    private fun calculate(totalOdo: String, odo: String, date: String, repairOdo: Int, repairDate: Int): Array<Any> {
         // 교체 주행거리와 현재 누적 주행거리의 차
         val totalOdos = totalOdo.toInt()
         val odos = odo.toInt()
@@ -175,7 +175,7 @@ class RepairInfoActivity : AppCompatActivity() {
         return Triple(years, months, remainingDaysAfterMonths)
     }
 
-    fun formatDaysToYearsMonthsDays(days: Int): String {
+    private fun formatDaysToYearsMonthsDays(days: Int): String {
         val (years, months, remainingDays) = daysToYearMonthDay(days)
 
         val formattedString = buildString {
@@ -187,7 +187,7 @@ class RepairInfoActivity : AppCompatActivity() {
         return formattedString.trim()
     }
 
-    fun addCommasToNumber(number: Int): String {
+    private fun addCommasToNumber(number: Int): String {
         val formattedString = "%,d".format(number)
         return formattedString
     }
