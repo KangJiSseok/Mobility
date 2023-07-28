@@ -5,11 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import com.example.mobility.databinding.ActivityCarInfoBinding
 import com.example.mobility.databinding.ActivityMainBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 
 class MainActivity : AppCompatActivity() {
-    lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
@@ -55,6 +55,19 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(baseContext, "로그인 실패", Toast.LENGTH_SHORT).show()
                 }
             }
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        moveMainpage(MyApplication.auth?.currentUser)
+    }
+
+    private fun moveMainpage(user:FirebaseUser?) {
+        if(user != null)
+        {
+            startActivity(Intent(this,CarInfoActivity::class.java))
+            Toast.makeText(applicationContext, user.email.toString() + "님 환영합니다.", Toast.LENGTH_SHORT).show()
         }
     }
 }
