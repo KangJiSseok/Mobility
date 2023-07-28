@@ -23,6 +23,11 @@ class SignUpActivity : AppCompatActivity() {
             val email = binding.signupId.text.toString()
             val password = binding.signupPassword.text.toString()
 
+            if (binding.signupPassword.text.toString() != binding.checkPassword.text.toString()){
+                Toast.makeText(applicationContext,"비밀번호를 다시 입력해주세요.",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             MyApplication.auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this){task ->
                 //회원가입 성공, 실패 판단
                 if(task.isSuccessful)
