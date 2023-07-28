@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
+import com.example.mobility.MyApplication.Companion.db
 import com.example.mobility.databinding.ActivitySignUpBinding
+import com.example.mobility.model.ItemData
 
 class SignUpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,18 +24,20 @@ class SignUpActivity : AppCompatActivity() {
             val password = binding.signupPassword.text.toString()
 
             MyApplication.auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this){task ->
-                binding.signupId.text.clear()
-                binding.signupPassword.text.clear()
                 //회원가입 성공, 실패 판단
                 if(task.isSuccessful)
                 {
                     MyApplication.auth.currentUser?.sendEmailVerification()?.addOnCompleteListener { sendTask ->
                         if(sendTask.isSuccessful)
                         {
+                            val data = ItemData()
+                            data.profile.replace("id",binding.signupId.text.toString())
+                            data.profile.replace("name",binding.signupName.text.toString())
+                            data.profile.replace("phone number",binding.signupPhone.text.toString())
+                            db.collection(MyApplication.auth.currentUser!!.uid).document("Profile").set(data.profile)
                             Toast.makeText(baseContext,"회원가입 성공, 전송된 메일을 확인해 주세요.", Toast.LENGTH_SHORT).show()
                             //로그아웃화면으로
                             finish()
-
 
                         }
                         else
