@@ -10,6 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mobility.MyApplication.Companion.db
 import com.example.mobility.databinding.ActivityCarInfoBinding
+import com.example.mobility.model.ItemData
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -22,8 +23,10 @@ class CarInfoActivity : AppCompatActivity() {
 
         getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
 
-
         title = "차량 정보 등록"
+
+        // 챠량정보를 한번 입력한 경우
+        val data = ItemData()
 
         // 차종, 연식, 주행 거리를 입력받음
         binding.submit.setOnClickListener {
@@ -41,7 +44,6 @@ class CarInfoActivity : AppCompatActivity() {
             }
 
             // 차량 정보 등록 (서버)
-            val data = ItemData()
             data.CarInfo["model"] = binding.car.text.toString()
             data.CarInfo["year"] = binding.year.text.toString()
             data.CarInfo["odo"] = binding.odo.text.toString()

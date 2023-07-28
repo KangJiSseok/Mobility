@@ -38,26 +38,19 @@ class SignUpActivity : AppCompatActivity() {
                             ?.addOnCompleteListener { sendTask ->
                                 if (sendTask.isSuccessful) {
                                     val data = ItemData()
-                                    data.profile.replace("id", binding.signupId.text.toString())
-                                    data.profile.replace("name", binding.signupName.text.toString())
-                                    data.profile.replace(
-                                        "phone number",
-                                        binding.signupPhone.text.toString()
-                                    )
-                                    db.collection(MyApplication.auth.currentUser!!.uid)
-                                        .document("Profile").set(data.profile)
-                                    Toast.makeText(
-                                        this,
-                                        "회원가입 성공, 전송된 메일을 확인해 주세요.",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
+                                    data.profile["id"] = binding.signupId.text.toString()
+                                    data.profile["name"] = binding.signupName.text.toString()
+                                    data.profile["phone number"] = binding.signupPhone.text.toString()
+                                    db.collection(MyApplication.auth.currentUser!!.uid).document("Profile").set(data.profile)
+                                    db.collection(MyApplication.auth.currentUser!!.uid).document("CarInfo").set(data.CarInfo)
+                                    Toast.makeText(baseContext,"회원가입 성공, 전송된 메일을 확인해 주세요.", Toast.LENGTH_SHORT).show()
+
                                     FirebaseAuth.getInstance().signOut()
                                     startActivity(Intent(this,MainActivity::class.java))
                                     finish()
                                 } else {
                                     Toast.makeText(this, "메일 발송 실패", Toast.LENGTH_SHORT).show()
                                     //로그아웃화면으로
-
                                 }
                             }
                     } else {
