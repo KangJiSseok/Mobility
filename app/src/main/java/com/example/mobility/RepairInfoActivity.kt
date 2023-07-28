@@ -123,16 +123,16 @@ class RepairInfoActivity : AppCompatActivity() {
         else {
             if (tireStatus == "odo") {
                 binding.tireOdoProgs.progress = 100
-                binding.tireText.text = "주행거리가 도달하여 에어컨 필터를 교체해야 합니다."
+                binding.tireText.text = "주행거리가 도달하여 타이어를 교체해야 합니다."
             }
             if (tireStatus == "date") {
                 binding.tireDateProgs.progress = 100
-                binding.tireText.text = "교체기간이 도달하여 에어컨 필터를 교체해야 합니다."
+                binding.tireText.text = "교체기간이 도달하여 타이어를 교체해야 합니다."
             }
             if (tireStatus == "both") {
                 binding.tireOdoProgs.progress = 100
                 binding.tireDateProgs.progress = 100
-                binding.tireText.text = "주행거리 및 교체기간이 모두 도달하여 에어컨 필터를 교체해야 합니다."
+                binding.tireText.text = "주행거리 및 교체기간이 모두 도달하여 타이어를 교체해야 합니다."
             }
         }
     }
