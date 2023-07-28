@@ -30,7 +30,7 @@
         <EditText
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:hint="주행거리"
+            android:hint="주행거리 (km)"
             android:id="@+id/odo"
             android:inputType="number"
             android:layout_marginBottom="10dp" />
