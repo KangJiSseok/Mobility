@@ -1,9 +1,11 @@
 package com.example.mobility
 
+import android.R
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.widget.Toast
 import com.example.mobility.databinding.ActivityCarInfoBinding
 import com.example.mobility.databinding.ActivityMainBinding
@@ -56,5 +58,11 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.home -> finish()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

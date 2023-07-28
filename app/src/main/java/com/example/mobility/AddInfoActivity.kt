@@ -1,10 +1,12 @@
 package com.example.mobility
 
+import android.R
 import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.DatePicker
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -26,6 +28,7 @@ class AddInfoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityAddInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
 
         title = "정비 정보 등록"
 
@@ -120,5 +123,12 @@ class AddInfoActivity : AppCompatActivity() {
         val inputDate = LocalDate.parse(dateString)
 
         return inputDate.isAfter(currentDate)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.home -> finish()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
