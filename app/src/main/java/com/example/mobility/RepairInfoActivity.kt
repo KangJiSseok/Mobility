@@ -27,34 +27,106 @@ class RepairInfoActivity : AppCompatActivity() {
         val engDate = intent.getStringExtra("eng-date").toString()
 
         // 엔진오일
-        val (erepairNeeded, ediffOdo, ediffDate) = calculate(odo, engOdo, engDate, 15000, 365)
+        val eOdoRepair = 15000
+        val eDateRapair = 365
+        val (eRepairNeeded, eDiffOdo, eDiffDate) = calculate(odo, engOdo, engDate, eOdoRepair, eDateRapair)
 
-        val engOdoRatio: Double = (ediffOdo.toString().toDouble() / 15000) * 100
-        val engDateRatio: Double = (ediffDate.toString().toDouble() / 365) * 100
+        val engOdoRatio: Double = (eDiffOdo.toString().toDouble() / eOdoRepair) * 100
+        val engDateRatio: Double = (eDiffDate.toString().toDouble() / eDateRapair) * 100
 
-        // 엔진오일
         binding.engOdoProgs.progress = engOdoRatio.toInt()
         binding.engDateProgs.progress = engDateRatio.toInt()
 
-        val isEngRepair = erepairNeeded.toString().toBoolean()
-        Log.d("ediffOdo", ediffOdo.toString())
+        val engStatus = eRepairNeeded.toString()
+        Log.d("ediffOdo", eDiffOdo.toString())
 
-        if (erepairNeeded.toString() == "false") {
-            binding.engText.text = "교체까지 ${15000 - ediffOdo.toString().toInt()}km, ${365 - ediffDate.toString().toInt()}일 남았습니다."
+        if (engStatus == "false") {
+            binding.engText.text = "교체까지 ${addCommasToNumber(eOdoRepair - eDiffOdo.toString().toInt())}km, " +
+                    "${formatDaysToYearsMonthsDays(eDateRapair - eDiffDate.toString().toInt())} 남았습니다."
         }
         else {
-            if (erepairNeeded.toString() == "odo") {
+            if (engStatus == "odo") {
                 binding.engOdoProgs.progress = 100
                 binding.engText.text = "주행거리가 도달하여 엔진오일을 교체해야 합니다."
             }
-            if (erepairNeeded.toString() == "date") {
+            if (engStatus == "date") {
                 binding.engDateProgs.progress = 100
                 binding.engText.text = "교체기간이 도달하여 엔진오일을 교체해야 합니다."
             }
-            if (erepairNeeded.toString() == "both") {
+            if (engStatus == "both") {
                 binding.engOdoProgs.progress = 100
                 binding.engDateProgs.progress = 100
                 binding.engText.text = "주행거리 및 교체기간이 모두 도달하여 엔진오일을 교체해야 합니다."
+            }
+        }
+
+        // 에어컨 필터
+        val acOdo = intent.getStringExtra("ac-odo").toString()
+        val acDate = intent.getStringExtra("ac-date").toString()
+        val acOdoRepair = 15000
+        val acDateRepair = 180
+        val (acRepairNeeded, acDiffOdo, acDiffDate) = calculate(odo, acOdo, acDate, acOdoRepair, acDateRepair)
+
+        val acOdoRatio: Double = (acDiffOdo.toString().toDouble() / acOdoRepair) * 100
+        val acDateRatio: Double = (acDiffDate.toString().toDouble() / acDateRepair) * 100
+
+        binding.acOdoProgs.progress = acOdoRatio.toInt()
+        binding.acDateProgs.progress = acDateRatio.toInt()
+
+        val acStatus = acRepairNeeded.toString()
+
+        if (acStatus == "false") {
+            binding.acText.text = "교체까지 ${addCommasToNumber(acOdoRepair - acDiffOdo.toString().toInt())}km, " +
+                    "${formatDaysToYearsMonthsDays(acDateRepair - acDiffDate.toString().toInt())} 남았습니다."
+        }
+        else {
+            if (acStatus == "odo") {
+                binding.acOdoProgs.progress = 100
+                binding.acText.text = "주행거리가 도달하여 에어컨 필터를 교체해야 합니다."
+            }
+            if (acStatus == "date") {
+                binding.acDateProgs.progress = 100
+                binding.acText.text = "교체기간이 도달하여 에어컨 필터를 교체해야 합니다."
+            }
+            if (acStatus == "both") {
+                binding.acOdoProgs.progress = 100
+                binding.acDateProgs.progress = 100
+                binding.acText.text = "주행거리 및 교체기간이 모두 도달하여 에어컨 필터를 교체해야 합니다."
+            }
+        }
+
+        // 타이어
+        val tireOdo = intent.getStringExtra("tire-odo").toString()
+        val tireDate = intent.getStringExtra("tire-date").toString()
+        val tireOdoRepair = 45000
+        val tireDateRepair = 1095 // 3년
+        val (tireRepairNeeded, tireDiffOdo, tireDiffDate) = calculate(odo, tireOdo, tireDate, tireOdoRepair, tireDateRepair)
+
+        val tireOdoRatio: Double = (tireDiffOdo.toString().toDouble() / tireOdoRepair) * 100
+        val tireDateRatio: Double = (tireDiffDate.toString().toDouble() / tireDateRepair) * 100
+
+        binding.tireOdoProgs.progress = tireOdoRatio.toInt()
+        binding.tireDateProgs.progress = tireDateRatio.toInt()
+
+        val tireStatus = tireRepairNeeded.toString()
+
+        if (tireStatus == "false") {
+            binding.tireText.text = "교체까지 ${addCommasToNumber(tireOdoRepair - tireDiffOdo.toString().toInt())}km, " +
+                    "${formatDaysToYearsMonthsDays(tireDateRepair - tireDiffDate.toString().toInt())} 남았습니다."
+        }
+        else {
+            if (tireStatus == "odo") {
+                binding.tireOdoProgs.progress = 100
+                binding.tireText.text = "주행거리가 도달하여 에어컨 필터를 교체해야 합니다."
+            }
+            if (tireStatus == "date") {
+                binding.tireDateProgs.progress = 100
+                binding.tireText.text = "교체기간이 도달하여 에어컨 필터를 교체해야 합니다."
+            }
+            if (tireStatus == "both") {
+                binding.tireOdoProgs.progress = 100
+                binding.tireDateProgs.progress = 100
+                binding.tireText.text = "주행거리 및 교체기간이 모두 도달하여 에어컨 필터를 교체해야 합니다."
             }
         }
     }
@@ -77,7 +149,7 @@ class RepairInfoActivity : AppCompatActivity() {
 
         // 교체한지 며칠 지났는지 일수로 계산
         var diffDate = (today.time.time - dateValue.time) / (60 * 60 * 24 * 1000)
-        
+
         // 주행거리 또는 교체주기 둘 다 초과한 경우
         if (diffOdo >= repairOdo && diffDate >= repairDate) {
             return arrayOf("both", diffOdo, diffDate)
@@ -91,6 +163,33 @@ class RepairInfoActivity : AppCompatActivity() {
 
         // 둘다 초과하지 않은 경우
         return arrayOf("false", diffOdo, diffDate)
+    }
+
+    fun daysToYearMonthDay(days: Int): Triple<Int, Int, Int> {
+        val years = days / 365
+        val remainingDaysAfterYears = days % 365
+
+        val months = remainingDaysAfterYears / 30
+        val remainingDaysAfterMonths = remainingDaysAfterYears % 30
+
+        return Triple(years, months, remainingDaysAfterMonths)
+    }
+
+    fun formatDaysToYearsMonthsDays(days: Int): String {
+        val (years, months, remainingDays) = daysToYearMonthDay(days)
+
+        val formattedString = buildString {
+            if (years > 0) append("${years}년 ")
+            if (months > 0) append("${months}개월 ")
+            if (remainingDays > 0) append("${remainingDays}일")
+        }
+
+        return formattedString.trim()
+    }
+
+    fun addCommasToNumber(number: Int): String {
+        val formattedString = "%,d".format(number)
+        return formattedString
     }
     
 }

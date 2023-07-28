@@ -7,6 +7,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.DatePicker
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mobility.databinding.ActivityAddInfoBinding
 import org.w3c.dom.Text
@@ -41,15 +42,28 @@ class AddInfoActivity : AppCompatActivity() {
 
         // 등록하기 버튼 클릭 시 RepairInfoActivity 실행 및 정보 전달
         binding.submit.setOnClickListener {
+            val engOdo = binding.engOdo.text.toString()
+            val acOdo = binding.acOdo.text.toString()
+            val tireOdo = binding.tireOdo.text.toString()
+
+            // 입력 유효성 검사
+//            if (engOdo.isNullOrEmpty() || acOdo.isNullOrEmpty() || tireOdo.isNullOrEmpty()) {
+//                var loginfailalert = AlertDialog.Builder(this)
+//                loginfailalert.setMessage("모든 입력란을 채워 주세요.")
+//                loginfailalert.setPositiveButton("확인", null)
+//                loginfailalert.show()
+//                return@setOnClickListener
+//            }
+
             val intent = Intent(this, RepairInfoActivity::class.java)
 
             intent.putExtra("car", car)
             intent.putExtra("year", year)
             intent.putExtra("odo", odo)
 
-            intent.putExtra("eng-odo", binding.engOdo.text.toString())
-            intent.putExtra("ac-odo", binding.acOdo.text.toString())
-            intent.putExtra("tire-odo", binding.tireOdo.text.toString())
+            intent.putExtra("eng-odo", engOdo)
+            intent.putExtra("ac-odo", acOdo)
+            intent.putExtra("tire-odo", tireOdo)
 
             val engDate = "${binding.engDate.year}-${monthClear(binding.engDate.month)}" +
                     "-${dayClear(binding.engDate.dayOfMonth)}"
