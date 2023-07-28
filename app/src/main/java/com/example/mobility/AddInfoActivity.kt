@@ -38,7 +38,7 @@ class AddInfoActivity : AppCompatActivity() {
         odo = array?.get(2).toString()
 
         // 값 전달 테스트
-        Toast.makeText(this, "차종: ${car}, 연식: ${year}, 주행거리: ${odo}", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, "차종: ${car}, 연식: ${year}, 주행거리: ${odo}", Toast.LENGTH_SHORT).show()
 
         // 등록하기 버튼 클릭 시 RepairInfoActivity 실행 및 정보 전달
         binding.submit.setOnClickListener {
