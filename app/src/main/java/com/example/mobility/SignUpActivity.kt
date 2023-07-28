@@ -1,8 +1,10 @@
 package com.example.mobility
 
+import android.R
 import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Toast
 import com.example.mobility.databinding.ActivitySignUpBinding
 
@@ -11,6 +13,7 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
 
         title = "회원가입"
 
@@ -49,5 +52,12 @@ class SignUpActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.home -> finish()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

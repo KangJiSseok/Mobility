@@ -1,9 +1,11 @@
 package com.example.mobility
 
+import android.R
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.mobility.databinding.ActivityRepairInfoBinding
@@ -15,16 +17,20 @@ class RepairInfoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityRepairInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
 
         title = "남은 주행 거리와 기간"
 
         // intent 값 받기
         val intent: Intent = getIntent()
 
-        val car = intent.getStringExtra("car")
+        val car = intent.getStringExtra("car").toString()
+        val year = intent.getStringExtra("year").toString()
         val odo = intent.getStringExtra("odo").toString()
         val engOdo = intent.getStringExtra("eng-odo").toString()
         val engDate = intent.getStringExtra("eng-date").toString()
+
+        binding.carName.text = "${year}년식 $car"
 
         // 엔진오일
         val eOdoRepair = 15000
@@ -190,6 +196,13 @@ class RepairInfoActivity : AppCompatActivity() {
     private fun addCommasToNumber(number: Int): String {
         val formattedString = "%,d".format(number)
         return formattedString
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.home -> finish()
+        }
+        return super.onOptionsItemSelected(item)
     }
     
 }

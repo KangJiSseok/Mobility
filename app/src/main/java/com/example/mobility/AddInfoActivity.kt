@@ -1,10 +1,12 @@
 package com.example.mobility
 
+import android.R
 import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.DatePicker
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -26,9 +28,9 @@ class AddInfoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityAddInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
 
         title = "정비 정보 등록"
-
 
         // intent 값 받기
         val intent: Intent = getIntent()
@@ -39,7 +41,7 @@ class AddInfoActivity : AppCompatActivity() {
         odo = array?.get(2).toString()
 
         // 값 전달 테스트
-        Toast.makeText(this, "차종: ${car}, 연식: ${year}, 주행거리: ${odo}", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, "차종: ${car}, 연식: ${year}, 주행거리: ${odo}", Toast.LENGTH_SHORT).show()
 
         // 등록하기 버튼 클릭 시 RepairInfoActivity 실행 및 정보 전달
         binding.submit.setOnClickListener {
@@ -64,7 +66,7 @@ class AddInfoActivity : AppCompatActivity() {
             }
 
             // 부품 교체의 주행 거리가 현재 주행 거리보다 많은 경우 에러 리턴
-            if (engOdo > odo || acOdo > odo || tireOdo > odo) {
+            if (engOdo.toInt() > odo.toInt() || acOdo.toInt() > odo.toInt() || tireOdo.toInt() > odo.toInt()) {
                 var loginfailalert = AlertDialog.Builder(this)
                 loginfailalert.setMessage("부품 교체 당시의 주행 거리를 입력해 주세요.")
                 loginfailalert.setPositiveButton("확인", null)
@@ -121,5 +123,12 @@ class AddInfoActivity : AppCompatActivity() {
         val inputDate = LocalDate.parse(dateString)
 
         return inputDate.isAfter(currentDate)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.home -> finish()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
