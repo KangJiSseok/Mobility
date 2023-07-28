@@ -3,13 +3,15 @@ package com.example.mobility
 import android.R
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mobility.MyApplication.Companion.db
 import com.example.mobility.databinding.ActivityCarInfoBinding
-import com.example.mobility.model.ItemData
+import com.google.firebase.auth.FirebaseAuth
+
 
 
 class CarInfoActivity : AppCompatActivity() {
@@ -59,6 +61,13 @@ class CarInfoActivity : AppCompatActivity() {
 
             // Activity 실행
             startActivity(intent)
+        }
+
+        binding.logout.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            startActivity(Intent(this,MainActivity::class.java))
+            Toast.makeText(this,"로그아웃",Toast.LENGTH_SHORT).show()
+            finish()
         }
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
