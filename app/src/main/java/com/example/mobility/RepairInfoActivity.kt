@@ -21,10 +21,13 @@ class RepairInfoActivity : AppCompatActivity() {
         // intent 값 받기
         val intent: Intent = getIntent()
 
-        val car = intent.getStringExtra("car")
+        val car = intent.getStringExtra("car").toString()
+        val year = intent.getStringExtra("year").toString()
         val odo = intent.getStringExtra("odo").toString()
         val engOdo = intent.getStringExtra("eng-odo").toString()
         val engDate = intent.getStringExtra("eng-date").toString()
+
+        binding.carName.text = "${year}년식 $car"
 
         // 엔진오일
         val eOdoRepair = 15000

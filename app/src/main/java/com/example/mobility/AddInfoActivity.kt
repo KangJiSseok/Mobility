@@ -29,7 +29,6 @@ class AddInfoActivity : AppCompatActivity() {
 
         title = "정비 정보 등록"
 
-
         // intent 값 받기
         val intent: Intent = getIntent()
         val array = intent.getStringArrayExtra("infoArray")
@@ -64,7 +63,7 @@ class AddInfoActivity : AppCompatActivity() {
             }
 
             // 부품 교체의 주행 거리가 현재 주행 거리보다 많은 경우 에러 리턴
-            if (engOdo > odo || acOdo > odo || tireOdo > odo) {
+            if (engOdo.toInt() > odo.toInt() || acOdo.toInt() > odo.toInt() || tireOdo.toInt() > odo.toInt()) {
                 var loginfailalert = AlertDialog.Builder(this)
                 loginfailalert.setMessage("부품 교체 당시의 주행 거리를 입력해 주세요.")
                 loginfailalert.setPositiveButton("확인", null)

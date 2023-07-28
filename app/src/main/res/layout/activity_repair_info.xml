@@ -11,6 +11,13 @@
         android:orientation="vertical"
         android:padding="20dp">
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/car_name"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:layout_marginBottom="12dp"/>
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="엔진오일 및 오일필터"
