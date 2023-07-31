@@ -18,7 +18,7 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
+        supportActionBar?.setDisplayHomeAsUpEnabled(true);
 
         title = "회원가입"
 
@@ -30,7 +30,6 @@ class SignUpActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, "비밀번호를 다시 입력해주세요.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-
             MyApplication.auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     //회원가입 성공, 실패 판단
@@ -39,27 +38,19 @@ class SignUpActivity : AppCompatActivity() {
                             ?.addOnCompleteListener { sendTask ->
                                 if (sendTask.isSuccessful) {
                                     val data = ItemData()
-                                    data.profile.replace("id", binding.signupId.text.toString())
-                                    data.profile.replace("name", binding.signupName.text.toString())
-                                    data.profile.replace(
-                                        "phone number",
-                                        binding.signupPhone.text.toString()
-                                    )
-                                    db.collection(MyApplication.auth.currentUser!!.uid)
-                                        .document("Profile").set(data.profile)
-                                    Toast.makeText(
-                                        this,
-                                        "회원가입 성공, 전송된 메일을 확인해 주세요.",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
+                                    data.profile["id"] = binding.signupId.text.toString()
+                                    data.profile["name"] = binding.signupName.text.toString()
+                                    data.profile["phone number"] = binding.signupPhone.text.toString()
+                                    db.collection(MyApplication.auth.currentUser!!.uid).document("Profile").set(data.profile)
+                                    db.collection(MyApplication.auth.currentUser!!.uid).document("CarInfo").set(data.CarInfo)
+                                    Toast.makeText(baseContext,"회원가입 성공, 전송된 메일을 확인해 주세요.", Toast.LENGTH_SHORT).show()
+
                                     FirebaseAuth.getInstance().signOut()
                                     startActivity(Intent(this,MainActivity::class.java))
                                     finish()
-
                                 } else {
                                     Toast.makeText(this, "메일 발송 실패", Toast.LENGTH_SHORT).show()
                                     //로그아웃화면으로
-
                                 }
                             }
                     } else {

@@ -17,7 +17,7 @@ class RepairInfoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityRepairInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
+        supportActionBar?.setDisplayHomeAsUpEnabled(true);
 
         title = "남은 주행 거리와 기간"
 
@@ -171,7 +171,7 @@ class RepairInfoActivity : AppCompatActivity() {
         return arrayOf("false", diffOdo, diffDate)
     }
 
-    fun daysToYearMonthDay(days: Int): Triple<Int, Int, Int> {
+    private fun daysToYearMonthDay(days: Int): Triple<Int, Int, Int> {
         val years = days / 365
         val remainingDaysAfterYears = days % 365
 

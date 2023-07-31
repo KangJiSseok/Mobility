@@ -28,7 +28,7 @@ class AddInfoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityAddInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
+        supportActionBar?.setDisplayHomeAsUpEnabled(true);
 
         title = "정비 정보 등록"
 

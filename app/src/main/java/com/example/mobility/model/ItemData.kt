@@ -6,5 +6,9 @@ class ItemData {
         "name" to "",
         "phone number" to ""
     )
-
+    var CarInfo = hashMapOf(
+        "model" to "",
+        "year" to "",
+        "odo" to ""
+    )
 }
