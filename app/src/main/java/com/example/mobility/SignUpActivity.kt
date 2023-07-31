@@ -43,6 +43,7 @@ class SignUpActivity : AppCompatActivity() {
                                     data.profile["phone number"] = binding.signupPhone.text.toString()
                                     db.collection(MyApplication.auth.currentUser!!.uid).document("Profile").set(data.profile)
                                     db.collection(MyApplication.auth.currentUser!!.uid).document("CarInfo").set(data.CarInfo)
+                                    db.collection(MyApplication.auth.currentUser!!.uid).document("RepairInfo").set(data.RepairInfo)
                                     Toast.makeText(baseContext,"회원가입 성공, 전송된 메일을 확인해 주세요.", Toast.LENGTH_SHORT).show()
 
                                     FirebaseAuth.getInstance().signOut()

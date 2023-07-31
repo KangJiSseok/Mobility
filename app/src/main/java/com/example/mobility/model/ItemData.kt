@@ -11,4 +11,12 @@ class ItemData {
         "year" to "",
         "odo" to ""
     )
+    var RepairInfo = hashMapOf(
+        "engineOdo" to "",
+        "engineDate" to "",
+        "acOdo" to "",
+        "acDate" to "",
+        "tireOdo" to "",
+        "tireDate" to "",
+    )
 }

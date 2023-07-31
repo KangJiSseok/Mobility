@@ -22,7 +22,8 @@
             android:id="@+id/signup_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="example@gmaile.com"/>
+            android:hint="example@gmaile.com"
+            android:inputType="textEmailAddress"/>
     </LinearLayout>
 
     <LinearLayout
@@ -90,7 +91,8 @@
             android:id="@+id/signup_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="xxx-xxxx-xxxx"/>
+            android:hint="xxx-xxxx-xxxx"
+            android:inputType="phone"/>
     </LinearLayout>
 
     <Button
