@@ -18,7 +18,7 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
+        supportActionBar?.setDisplayHomeAsUpEnabled(true);
 
         title = "회원가입"
 

@@ -21,7 +21,7 @@ class CarInfoActivity : AppCompatActivity() {
         val binding = ActivityCarInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
+        supportActionBar?.setDisplayHomeAsUpEnabled(true);
 
         title = "차량 정보 등록"
 
