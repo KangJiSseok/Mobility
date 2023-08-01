@@ -12,6 +12,11 @@ import com.example.mobility.R
 import com.example.mobility.databinding.ActivityRepairInfoBinding
 import com.example.mobility.model.ItemData
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.Calendar
 
@@ -143,7 +148,6 @@ class RepairInfoActivity : AppCompatActivity() {
     // 화면이 다시 시작할 때마다 업데이트
     override fun onResume() {
         super.onResume()
-
 //        MyApplication.db.collection(MyApplication.auth.currentUser!!.uid).document("CarInfo").get().addOnSuccessListener { task ->
 //            if (task != null){
 //                data.CarInfo = task.data as HashMap<String, String>
@@ -152,7 +156,11 @@ class RepairInfoActivity : AppCompatActivity() {
 //            }
 //        }
 
-        db.collection(MyApplication.auth.currentUser!!.uid).get().addOnSuccessListener { documents ->
+        //ㅂㅣ동기로 처리
+        CoroutineScope(Dispatchers.Main).launch {
+            val documents = withContext(Dispatchers.IO){
+                db.collection(MyApplication.auth.currentUser!!.uid).get().await()
+            }
             for (document in documents){
                 when (document.id) {
                     "CarInfo" -> data.CarInfo = document.data as HashMap<String, String>
@@ -160,6 +168,12 @@ class RepairInfoActivity : AppCompatActivity() {
                     "Profile" -> data.Profile = document.data as HashMap<String, String>
                 }
             }
+
+            var car = data.CarInfo["model"].toString()
+            var year = data.CarInfo["year"].toString()
+            var odo = data.CarInfo["odo"].toString()
+
+            Log.d("kkang","$car,$year,$odo")
         }
     }
 
@@ -236,7 +250,7 @@ class RepairInfoActivity : AppCompatActivity() {
                 finish()
             }
             R.id.setting -> startActivity(Intent(this, CarInfoActivity::class.java))
-            R.id.setting -> startActivity(Intent(this,AddInfoActivity::class.java))
+            R.id.setting -> startActivity(Intent(this, AddInfoActivity::class.java))
         }
         return super.onOptionsItemSelected(item)
     }
