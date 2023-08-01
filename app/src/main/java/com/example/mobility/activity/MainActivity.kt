@@ -72,8 +72,9 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
                     }
+            } else {
+                Toast.makeText(baseContext, "이메일형식이 아닙니다.", Toast.LENGTH_SHORT).show()
             }
-            Toast.makeText(baseContext, "이메일형식이 아닙니다.", Toast.LENGTH_SHORT).show()
         }
     }
 

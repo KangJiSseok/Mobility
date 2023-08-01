@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.example.mobility.MyApplication
 import com.example.mobility.MyApplication.Companion.db
 import com.example.mobility.databinding.ActivityAddInfoBinding
 import com.example.mobility.model.ItemData

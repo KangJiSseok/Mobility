@@ -2,18 +2,22 @@ package com.example.mobility.activity
 
 import android.R
 import android.content.Intent
+import android.os.Build
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import com.example.mobility.MyApplication
 import com.example.mobility.MyApplication.Companion.db
 import com.example.mobility.databinding.ActivitySignUpBinding
 import com.example.mobility.model.ItemData
 import com.google.firebase.auth.FirebaseAuth
+import java.time.LocalDate
 
 class SignUpActivity : AppCompatActivity() {
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivitySignUpBinding.inflate(layoutInflater)
@@ -38,9 +42,13 @@ class SignUpActivity : AppCompatActivity() {
                             ?.addOnCompleteListener { sendTask ->
                                 if (sendTask.isSuccessful) {
                                     val data = ItemData()
+                                    val DateNow: LocalDate = LocalDate.now()
                                     data.Profile["id"] = binding.signupId.text.toString()
                                     data.Profile["name"] = binding.signupName.text.toString()
                                     data.Profile["phone number"] = binding.signupPhone.text.toString()
+                                    data.RepairInfo["engineDate"] = DateNow.toString()
+                                    data.RepairInfo["acDate"] = DateNow.toString()
+                                    data.RepairInfo["tireDate"] = DateNow.toString()
                                     db.collection(MyApplication.auth.currentUser!!.uid).document("Profile").set(data.Profile)
                                     db.collection(MyApplication.auth.currentUser!!.uid).document("CarInfo").set(data.CarInfo)
                                     db.collection(MyApplication.auth.currentUser!!.uid).document("RepairInfo").set(data.RepairInfo)
