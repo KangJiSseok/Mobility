@@ -26,11 +26,22 @@ class RepairInfoActivity : AppCompatActivity() {
         title = "남은 주행 거리와 기간"
 
         // 챠량정보를 DB에서 가져오기
+        db.collection(MyApplication.auth.currentUser!!.uid).get().addOnCompleteListener { task ->
+            if (task.isComplete){
+                for (document in task.result){
+                    when (document.id) {
+                        "CarInfo" -> data.CarInfo = document.data as HashMap<String, String>
+                        "RepairInfo" -> data.RepairInfo = document.data as HashMap<String, String>
+                        "Profile" -> data.Profile = document.data as HashMap<String, String>
+                    }
+                }
+            }
+            Log.d("kkang","${data.RepairInfo},${data.CarInfo},${data.Profile}")
+        }
 
         var car = data.CarInfo["model"].toString()
         var year = data.CarInfo["year"].toString()
         var odo = data.CarInfo["odo"].toString()
-
 
         var engOdo = data.RepairInfo["engineOdo"].toString()
         var engDate = data.RepairInfo["engineDate"].toString()
@@ -236,6 +247,7 @@ class RepairInfoActivity : AppCompatActivity() {
                 finish()
             }
             R.id.setting -> startActivity(Intent(this,CarInfoActivity::class.java))
+            R.id.repair -> startActivity(Intent(this,AddInfoActivity::class.java))
         }
         return super.onOptionsItemSelected(item)
     }
