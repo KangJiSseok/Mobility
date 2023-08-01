@@ -181,7 +181,7 @@ class RepairInfoActivity : AppCompatActivity() {
     }
 
     // 한글 받침에 따른 조사 처리
-    fun getParticle(name: String, firstValue: String, secondValue: String?): String? {
+    private fun getParticle(name: String, firstValue: String, secondValue: String?): String? {
         val lastName = name[name.length - 1]
 
         if (lastName.code < 0xAC00 || lastName.code > 0xD7A3) {
