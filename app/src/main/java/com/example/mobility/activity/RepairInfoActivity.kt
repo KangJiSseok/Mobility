@@ -1,4 +1,4 @@
-package com.example.mobility.activity
+package com.example.mobility
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,9 +6,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import com.example.mobility.MyApplication
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.example.mobility.MyApplication.Companion.db
-import com.example.mobility.R
 import com.example.mobility.databinding.ActivityRepairInfoBinding
 import com.example.mobility.model.ItemData
 import com.google.firebase.auth.FirebaseAuth
@@ -236,6 +236,7 @@ class RepairInfoActivity : AppCompatActivity() {
                 finish()
             }
             R.id.setting -> startActivity(Intent(this, CarInfoActivity::class.java))
+            R.id.setting -> startActivity(Intent(this,CarInfoActivity::class.java))
         }
         return super.onOptionsItemSelected(item)
     }
