@@ -14,14 +14,18 @@ import com.example.mobility.MyApplication
 import com.example.mobility.MyApplication.Companion.db
 import com.example.mobility.databinding.ActivityAddInfoBinding
 import com.example.mobility.model.ItemData
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 import org.w3c.dom.Text
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 
 
 class AddInfoActivity : AppCompatActivity() {
-    lateinit var car: String
-    lateinit var year: String
+
     lateinit var odo: String
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -35,25 +39,19 @@ class AddInfoActivity : AppCompatActivity() {
 
         val data = ItemData()
 
-        db.collection(MyApplication.auth.currentUser!!.uid).get().addOnSuccessListener { documents ->
-            for (document in documents){
+        CoroutineScope(Dispatchers.Main).launch {
+            val documents = withContext(Dispatchers.IO) {
+                db.collection(MyApplication.auth.currentUser!!.uid).get().await()
+            }
+            for (document in documents) {
                 when (document.id) {
                     "CarInfo" -> data.CarInfo = document.data as HashMap<String, String>
                     "RepairInfo" -> data.RepairInfo = document.data as HashMap<String, String>
                     "Profile" -> data.Profile = document.data as HashMap<String, String>
                 }
             }
+            odo = data.CarInfo["odo"].toString()
         }
-//        // intent 값 받기
-//        val intent: Intent = getIntent()
-//        val array = intent.getStringArrayExtra("infoArray")
-//
-//        car = array?.get(0).toString()
-//        year = array?.get(1).toString()
-//        odo = array?.get(2).toString()
-
-        // 값 전달 테스트
-//        Toast.makeText(this, "차종: ${car}, 연식: ${year}, 주행거리: ${odo}", Toast.LENGTH_SHORT).show()
 
         // 등록하기 버튼 클릭 시 DB 저장
         binding.submit.setOnClickListener {
@@ -95,22 +93,6 @@ class AddInfoActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-//            val intent = Intent(this, RepairInfoActivity::class.java)
-//
-//            intent.putExtra("car", car)
-//            intent.putExtra("year", year)
-//            intent.putExtra("odo", odo)
-//
-//            intent.putExtra("eng-odo", engOdo)
-//            intent.putExtra("ac-odo", acOdo)
-//            intent.putExtra("tire-odo", tireOdo)
-//
-//
-//
-//            intent.putExtra("eng-date", engDate)
-//            intent.putExtra("ac-date", acDate)
-//            intent.putExtra("tire-date", tireDate)
-//
             data.RepairInfo["engineOdo"] = engOdo
             data.RepairInfo["engineDate"] = engDate
             data.RepairInfo["acOdo"] = acOdo

@@ -92,7 +92,26 @@ class RepairInfoActivity : AppCompatActivity() {
             var year = data.CarInfo["year"].toString()
             var odo = data.CarInfo["odo"].toString()
 
-            Log.d("kkang","$car,$year,$odo")
+            // 엔진오일
+            var engOdo = data.RepairInfo["engineOdo"].toString()
+            var engDate = data.RepairInfo["engineDate"].toString()
+            val eOdoRepair = 15000
+            val eDataRepair = 365
+            this.dispInfo("엔진오일", odo, engOdo, engDate, eOdoRepair, eDataRepair)
+
+            // 에어컨 필터
+            var acOdo = data.RepairInfo["acOdo"].toString()
+            var acDate = data.RepairInfo["acDate"].toString()
+            val acOdoRepair = 15000
+            val acDateRepair = 180
+            this.dispInfo("에어컨 필터", odo, acOdo, acDate, acOdoRepair, acDateRepair)
+
+            // 타이어
+            var tireOdo = data.RepairInfo["tireOdo"].toString()
+            var tireDate = data.RepairInfo["tireDate"].toString()
+            val tireOdoRepair = 45000
+            val tireDateRepair = 1095 // 3년
+            this.dispInfo("타이어", odo, tireOdo, tireDate, tireOdoRepair, tireDateRepair)
         }
     }
 
@@ -132,7 +151,7 @@ class RepairInfoActivity : AppCompatActivity() {
         }
 
         // 둘다 초과하지 않은 경우
-        return arrayOf("false", diffOdo, diffDate)a
+        return arrayOf("false", diffOdo, diffDate)
     }
 
     /*

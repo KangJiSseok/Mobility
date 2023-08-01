@@ -64,25 +64,6 @@ class CarInfoActivity : AppCompatActivity() {
                         Toast.makeText(applicationContext, "성공", Toast.LENGTH_SHORT).show()
                     }
                 }
-
-////            // AddInfoActivity 실행
-////            val intent = Intent(this, AddInfoActivity::class.java)
-//            // RepairActivity 실행
-//            val intent = Intent(this, RepairInfoActivity::class.java)
-////
-////            // AddInfoActivity에 정보 전달
-////            val array = arrayOf(car, year, odo)
-////            intent.putExtra("infoArray", array)
-//
-//            // Activity 실행
-//            startActivity(intent)
-            finish()
-        }
-
-        binding.logout.setOnClickListener {
-            FirebaseAuth.getInstance().signOut()
-            startActivity(Intent(this, MainActivity::class.java))
-            Toast.makeText(this,"로그아웃",Toast.LENGTH_SHORT).show()
             finish()
         }
     }
