@@ -187,8 +187,8 @@ class RepairInfoActivity : AppCompatActivity() {
         if (lastName.code < 0xAC00 || lastName.code > 0xD7A3) {
             return name
         }
-        val seletedValue = if ((lastName.code - 0xAC00) % 28 > 0) firstValue else secondValue!!
-        return name + seletedValue
+        val selectedValue = if ((lastName.code - 0xAC00) % 28 > 0) firstValue else secondValue!!
+        return name + selectedValue
     }
 
 
