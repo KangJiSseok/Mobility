@@ -1,22 +1,22 @@
 package com.example.mobility.model
 
 class ItemData {
-    var profile = hashMapOf(
+    var Profile = hashMapOf(
         "id" to "",
         "name" to "",
         "phone number" to ""
     )
     var CarInfo = hashMapOf(
-        "model" to "",
-        "year" to "",
-        "odo" to ""
+        "model" to "0",
+        "year" to "0",
+        "odo" to "0"
     )
     var RepairInfo = hashMapOf(
-        "engineOdo" to "",
-        "engineDate" to "",
-        "acOdo" to "",
-        "acDate" to "",
-        "tireOdo" to "",
-        "tireDate" to "",
+        "engineOdo" to "0",
+        "engineDate" to "2023-07-01",
+        "acOdo" to "0",
+        "acDate" to "2023-07-01",
+        "tireOdo" to "0",
+        "tireDate" to "2023-07-01",
     )
 }

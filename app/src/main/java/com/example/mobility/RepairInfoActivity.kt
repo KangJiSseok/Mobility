@@ -1,36 +1,39 @@
 package com.example.mobility
 
-import android.R
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.example.mobility.MyApplication.Companion.db
 import com.example.mobility.databinding.ActivityRepairInfoBinding
+import com.example.mobility.model.ItemData
+import com.google.firebase.auth.FirebaseAuth
 import java.text.SimpleDateFormat
 import java.util.Calendar
 
 class RepairInfoActivity : AppCompatActivity() {
+
+    var data = ItemData()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityRepairInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true);
 
         title = "남은 주행 거리와 기간"
 
-        // intent 값 받기
-        val intent: Intent = getIntent()
+        // 챠량정보를 DB에서 가져오기
 
-        val car = intent.getStringExtra("car").toString()
-        val year = intent.getStringExtra("year").toString()
-        val odo = intent.getStringExtra("odo").toString()
-        val engOdo = intent.getStringExtra("eng-odo").toString()
-        val engDate = intent.getStringExtra("eng-date").toString()
+        var car = data.CarInfo["model"].toString()
+        var year = data.CarInfo["year"].toString()
+        var odo = data.CarInfo["odo"].toString()
 
-        binding.carName.text = "${year}년식 $car"
+
+        var engOdo = data.RepairInfo["engineOdo"].toString()
+        var engDate = data.RepairInfo["engineDate"].toString()
 
         // 엔진오일
         val eOdoRepair = 15000
@@ -67,8 +70,8 @@ class RepairInfoActivity : AppCompatActivity() {
         }
 
         // 에어컨 필터
-        val acOdo = intent.getStringExtra("ac-odo").toString()
-        val acDate = intent.getStringExtra("ac-date").toString()
+        var acOdo = data.RepairInfo["acOdo"].toString()
+        var acDate = data.RepairInfo["acDate"].toString()
         val acOdoRepair = 15000
         val acDateRepair = 180
         val (acRepairNeeded, acDiffOdo, acDiffDate) = calculate(odo, acOdo, acDate, acOdoRepair, acDateRepair)
@@ -102,8 +105,8 @@ class RepairInfoActivity : AppCompatActivity() {
         }
 
         // 타이어
-        val tireOdo = intent.getStringExtra("tire-odo").toString()
-        val tireDate = intent.getStringExtra("tire-date").toString()
+        var tireOdo = data.RepairInfo["tireOdo"].toString()
+        var tireDate = data.RepairInfo["tireDate"].toString()
         val tireOdoRepair = 45000
         val tireDateRepair = 1095 // 3년
         val (tireRepairNeeded, tireDiffOdo, tireDiffDate) = calculate(odo, tireOdo, tireDate, tireOdoRepair, tireDateRepair)
@@ -137,6 +140,34 @@ class RepairInfoActivity : AppCompatActivity() {
         }
     }
 
+    // 화면이 다시 시작할 때마다 업데이트
+    override fun onResume() {
+        super.onResume()
+
+//        MyApplication.db.collection(MyApplication.auth.currentUser!!.uid).document("CarInfo").get().addOnSuccessListener { task ->
+//            if (task != null){
+//                data.CarInfo = task.data as HashMap<String, String>
+//                Log.d("kkang", "${task.data?.get("name")}")
+//                Log.d("kkang", "${data.CarInfo}")
+//            }
+//        }
+
+        db.collection(MyApplication.auth.currentUser!!.uid).get().addOnSuccessListener { documents ->
+            for (document in documents){
+                when (document.id) {
+                    "CarInfo" -> data.CarInfo = document.data as HashMap<String, String>
+                    "RepairInfo" -> data.RepairInfo = document.data as HashMap<String, String>
+                    "Profile" -> data.Profile = document.data as HashMap<String, String>
+                }
+            }
+        }
+    }
+
+    // 메뉴 추가
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
     /*
     * 교체 주기 계산 함수
     */
@@ -200,9 +231,13 @@ class RepairInfoActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.home -> finish()
+            R.id.logout -> {
+                FirebaseAuth.getInstance().signOut()
+                finish()
+            }
+            R.id.setting -> startActivity(Intent(this,CarInfoActivity::class.java))
         }
         return super.onOptionsItemSelected(item)
     }
-    
+
 }

@@ -38,10 +38,10 @@ class SignUpActivity : AppCompatActivity() {
                             ?.addOnCompleteListener { sendTask ->
                                 if (sendTask.isSuccessful) {
                                     val data = ItemData()
-                                    data.profile["id"] = binding.signupId.text.toString()
-                                    data.profile["name"] = binding.signupName.text.toString()
-                                    data.profile["phone number"] = binding.signupPhone.text.toString()
-                                    db.collection(MyApplication.auth.currentUser!!.uid).document("Profile").set(data.profile)
+                                    data.Profile["id"] = binding.signupId.text.toString()
+                                    data.Profile["name"] = binding.signupName.text.toString()
+                                    data.Profile["phone number"] = binding.signupPhone.text.toString()
+                                    db.collection(MyApplication.auth.currentUser!!.uid).document("Profile").set(data.Profile)
                                     db.collection(MyApplication.auth.currentUser!!.uid).document("CarInfo").set(data.CarInfo)
                                     db.collection(MyApplication.auth.currentUser!!.uid).document("RepairInfo").set(data.RepairInfo)
                                     Toast.makeText(baseContext,"회원가입 성공, 전송된 메일을 확인해 주세요.", Toast.LENGTH_SHORT).show()

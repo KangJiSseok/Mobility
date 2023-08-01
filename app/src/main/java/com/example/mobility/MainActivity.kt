@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.widget.Toast
 import androidx.core.text.set
 import com.example.mobility.databinding.ActivityMainBinding
@@ -49,7 +50,7 @@ class MainActivity : AppCompatActivity() {
                             if (MyApplication.checkAuth()) {
                                 MyApplication.email = email
                                 //로그인화면으로 이동
-                                startActivity(Intent(this, CarInfoActivity::class.java))
+                                startActivity(Intent(this, RepairInfoActivity::class.java))
                             } else {
                                 Toast.makeText(
                                     baseContext,
@@ -95,7 +96,7 @@ class MainActivity : AppCompatActivity() {
     private fun moveMainpage(user:FirebaseUser?) {
         if(user != null)
         {
-            startActivity(Intent(this,CarInfoActivity::class.java))
+            startActivity(Intent(this,RepairInfoActivity::class.java))
             Toast.makeText(applicationContext, user.email.toString() + "님 환영합니다.", Toast.LENGTH_SHORT).show()
         }
     }

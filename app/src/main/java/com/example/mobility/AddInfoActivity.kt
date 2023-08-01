@@ -83,23 +83,23 @@ class AddInfoActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val intent = Intent(this, RepairInfoActivity::class.java)
-
-            intent.putExtra("car", car)
-            intent.putExtra("year", year)
-            intent.putExtra("odo", odo)
-
-            intent.putExtra("eng-odo", engOdo)
-            intent.putExtra("ac-odo", acOdo)
-            intent.putExtra("tire-odo", tireOdo)
-
-
-
-            intent.putExtra("eng-date", engDate)
-            intent.putExtra("ac-date", acDate)
-            intent.putExtra("tire-date", tireDate)
-
-            startActivity(intent)
+//            val intent = Intent(this, RepairInfoActivity::class.java)
+//
+//            intent.putExtra("car", car)
+//            intent.putExtra("year", year)
+//            intent.putExtra("odo", odo)
+//
+//            intent.putExtra("eng-odo", engOdo)
+//            intent.putExtra("ac-odo", acOdo)
+//            intent.putExtra("tire-odo", tireOdo)
+//
+//
+//
+//            intent.putExtra("eng-date", engDate)
+//            intent.putExtra("ac-date", acDate)
+//            intent.putExtra("tire-date", tireDate)
+//
+            finish()
         }
     }
 

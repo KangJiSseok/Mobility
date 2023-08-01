@@ -25,8 +25,18 @@ class CarInfoActivity : AppCompatActivity() {
 
         title = "차량 정보 등록"
 
-        // 챠량정보를 한번 입력한 경우
+        // 챠량정보를 DB에서 가져오기
         val data = ItemData()
+
+        db.collection(MyApplication.auth.currentUser!!.uid).get().addOnSuccessListener { documents ->
+            for (document in documents){
+                when (document.id) {
+                    "CarInfo" -> data.CarInfo = document.data as HashMap<String, String>
+                    "RepairInfo" -> data.RepairInfo = document.data as HashMap<String, String>
+                    "Profile" -> data.Profile = document.data as HashMap<String, String>
+                }
+            }
+        }
 
         // 차종, 연식, 주행 거리를 입력받음
         binding.submit.setOnClickListener {
@@ -54,15 +64,18 @@ class CarInfoActivity : AppCompatActivity() {
                     }
                 }
 
-            // AddInfoActivity 실행
-            val intent = Intent(this, AddInfoActivity::class.java)
-
-            // AddInfoActivity에 정보 전달
-            val array = arrayOf(car, year, odo)
-            intent.putExtra("infoArray", array)
-
-            // Activity 실행
-            startActivity(intent)
+////            // AddInfoActivity 실행
+////            val intent = Intent(this, AddInfoActivity::class.java)
+//            // RepairActivity 실행
+//            val intent = Intent(this, RepairInfoActivity::class.java)
+////
+////            // AddInfoActivity에 정보 전달
+////            val array = arrayOf(car, year, odo)
+////            intent.putExtra("infoArray", array)
+//
+//            // Activity 실행
+//            startActivity(intent)
+            finish()
         }
 
         binding.logout.setOnClickListener {
