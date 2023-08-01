@@ -132,7 +132,7 @@ class RepairInfoActivity : AppCompatActivity() {
         }
 
         // 둘다 초과하지 않은 경우
-        return arrayOf("false", diffOdo, diffDate)a
+        return arrayOf("false", diffOdo, diffDate)
     }
 
     /*
