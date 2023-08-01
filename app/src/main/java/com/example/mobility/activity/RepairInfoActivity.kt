@@ -23,9 +23,10 @@ import java.util.Calendar
 class RepairInfoActivity : AppCompatActivity() {
 
     var data = ItemData()
+    lateinit var binding: ActivityRepairInfoBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityRepairInfoBinding.inflate(layoutInflater)
+        binding = ActivityRepairInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         title = "남은 주행 거리와 기간"
@@ -36,126 +37,32 @@ class RepairInfoActivity : AppCompatActivity() {
         var year = data.CarInfo["year"].toString()
         var odo = data.CarInfo["odo"].toString()
 
-
+        // 엔진오일
         var engOdo = data.RepairInfo["engineOdo"].toString()
         var engDate = data.RepairInfo["engineDate"].toString()
-
-        // 엔진오일
         val eOdoRepair = 15000
-        val eDateRapair = 365
-        val (eRepairNeeded, eDiffOdo, eDiffDate) = calculate(odo, engOdo, engDate, eOdoRepair, eDateRapair)
-
-        val engOdoRatio: Double = (eDiffOdo.toString().toDouble() / eOdoRepair) * 100
-        val engDateRatio: Double = (eDiffDate.toString().toDouble() / eDateRapair) * 100
-
-        binding.engOdoProgs.progress = engOdoRatio.toInt()
-        binding.engDateProgs.progress = engDateRatio.toInt()
-
-        val engStatus = eRepairNeeded.toString()
-        Log.d("ediffOdo", eDiffOdo.toString())
-
-        if (engStatus == "false") {
-            binding.engText.text = "교체까지 ${addCommasToNumber(eOdoRepair - eDiffOdo.toString().toInt())}km, " +
-                    "${formatDaysToYearsMonthsDays(eDateRapair - eDiffDate.toString().toInt())} 남았습니다."
-        }
-        else {
-            if (engStatus == "odo") {
-                binding.engOdoProgs.progress = 100
-                binding.engText.text = "주행거리가 도달하여 엔진오일을 교체해야 합니다."
-            }
-            if (engStatus == "date") {
-                binding.engDateProgs.progress = 100
-                binding.engText.text = "교체기간이 도달하여 엔진오일을 교체해야 합니다."
-            }
-            if (engStatus == "both") {
-                binding.engOdoProgs.progress = 100
-                binding.engDateProgs.progress = 100
-                binding.engText.text = "주행거리 및 교체기간이 모두 도달하여 엔진오일을 교체해야 합니다."
-            }
-        }
-
+        val eDataRepair = 365
+        this.dispInfo("엔진오일", odo, engOdo, engDate, eOdoRepair, eDataRepair)
+        
         // 에어컨 필터
         var acOdo = data.RepairInfo["acOdo"].toString()
         var acDate = data.RepairInfo["acDate"].toString()
         val acOdoRepair = 15000
         val acDateRepair = 180
-        val (acRepairNeeded, acDiffOdo, acDiffDate) = calculate(odo, acOdo, acDate, acOdoRepair, acDateRepair)
-
-        val acOdoRatio: Double = (acDiffOdo.toString().toDouble() / acOdoRepair) * 100
-        val acDateRatio: Double = (acDiffDate.toString().toDouble() / acDateRepair) * 100
-
-        binding.acOdoProgs.progress = acOdoRatio.toInt()
-        binding.acDateProgs.progress = acDateRatio.toInt()
-
-        val acStatus = acRepairNeeded.toString()
-
-        if (acStatus == "false") {
-            binding.acText.text = "교체까지 ${addCommasToNumber(acOdoRepair - acDiffOdo.toString().toInt())}km, " +
-                    "${formatDaysToYearsMonthsDays(acDateRepair - acDiffDate.toString().toInt())} 남았습니다."
-        }
-        else {
-            if (acStatus == "odo") {
-                binding.acOdoProgs.progress = 100
-                binding.acText.text = "주행거리가 도달하여 에어컨 필터를 교체해야 합니다."
-            }
-            if (acStatus == "date") {
-                binding.acDateProgs.progress = 100
-                binding.acText.text = "교체기간이 도달하여 에어컨 필터를 교체해야 합니다."
-            }
-            if (acStatus == "both") {
-                binding.acOdoProgs.progress = 100
-                binding.acDateProgs.progress = 100
-                binding.acText.text = "주행거리 및 교체기간이 모두 도달하여 에어컨 필터를 교체해야 합니다."
-            }
-        }
-
+        this.dispInfo("에어컨 필터", odo, acOdo, acDate, acOdoRepair, acDateRepair)
+        
         // 타이어
         var tireOdo = data.RepairInfo["tireOdo"].toString()
         var tireDate = data.RepairInfo["tireDate"].toString()
         val tireOdoRepair = 45000
         val tireDateRepair = 1095 // 3년
-        val (tireRepairNeeded, tireDiffOdo, tireDiffDate) = calculate(odo, tireOdo, tireDate, tireOdoRepair, tireDateRepair)
+        this.dispInfo("타이어", odo, tireOdo, tireDate, tireOdoRepair, tireDateRepair)
 
-        val tireOdoRatio: Double = (tireDiffOdo.toString().toDouble() / tireOdoRepair) * 100
-        val tireDateRatio: Double = (tireDiffDate.toString().toDouble() / tireDateRepair) * 100
-
-        binding.tireOdoProgs.progress = tireOdoRatio.toInt()
-        binding.tireDateProgs.progress = tireDateRatio.toInt()
-
-        val tireStatus = tireRepairNeeded.toString()
-
-        if (tireStatus == "false") {
-            binding.tireText.text = "교체까지 ${addCommasToNumber(tireOdoRepair - tireDiffOdo.toString().toInt())}km, " +
-                    "${formatDaysToYearsMonthsDays(tireDateRepair - tireDiffDate.toString().toInt())} 남았습니다."
-        }
-        else {
-            if (tireStatus == "odo") {
-                binding.tireOdoProgs.progress = 100
-                binding.tireText.text = "주행거리가 도달하여 타이어를 교체해야 합니다."
-            }
-            if (tireStatus == "date") {
-                binding.tireDateProgs.progress = 100
-                binding.tireText.text = "교체기간이 도달하여 타이어를 교체해야 합니다."
-            }
-            if (tireStatus == "both") {
-                binding.tireOdoProgs.progress = 100
-                binding.tireDateProgs.progress = 100
-                binding.tireText.text = "주행거리 및 교체기간이 모두 도달하여 타이어를 교체해야 합니다."
-            }
-        }
     }
 
     // 화면이 다시 시작할 때마다 업데이트
     override fun onResume() {
         super.onResume()
-//        MyApplication.db.collection(MyApplication.auth.currentUser!!.uid).document("CarInfo").get().addOnSuccessListener { task ->
-//            if (task != null){
-//                data.CarInfo = task.data as HashMap<String, String>
-//                Log.d("kkang", "${task.data?.get("name")}")
-//                Log.d("kkang", "${data.CarInfo}")
-//            }
-//        }
-
         //ㅂㅣ동기로 처리
         CoroutineScope(Dispatchers.Main).launch {
             val documents = withContext(Dispatchers.IO){
@@ -216,6 +123,57 @@ class RepairInfoActivity : AppCompatActivity() {
         return arrayOf("false", diffOdo, diffDate)
     }
 
+    /*
+    * 화면 출력 함수
+    */
+    private fun dispInfo(text: String, odo: String, cOdo: String, cDate: String, cOdoRepair: Int, cDateRepair: Int, ) {
+        val (cRepairNeeded, cDiffOdo, cDiffDate) = calculate(odo, cOdo, cDate, cOdoRepair, cDateRepair)
+
+        val cOdoRatio: Double = (cDiffOdo.toString().toDouble() / cOdoRepair) * 100
+        val cDateRatio: Double = (cDiffDate.toString().toDouble() / cDateRepair) * 100
+
+        var cOdoProgs = binding.engOdoProgs
+        var cDateProgs = binding.engDateProgs
+        var cText = binding.engText
+
+        if (text == "에어컨 필터") {
+            cOdoProgs = binding.acOdoProgs
+            cDateProgs = binding.acDateProgs
+            cText = binding.acText
+        }
+        else if (text == "타이어") {
+            cOdoProgs = binding.tireOdoProgs
+            cDateProgs = binding.tireDateProgs
+            cText = binding.tireText
+        }
+
+        cOdoProgs.progress = cOdoRatio.toInt()
+        cDateProgs.progress = cDateRatio.toInt()
+
+        val status = cRepairNeeded.toString()
+
+        if (status == "false") {
+            cText.text = "교체까지 ${addCommasToNumber(cOdoRepair - cDiffOdo.toString().toInt())}km, " +
+                    "${formatDaysToYearsMonthsDays(cDateRepair - cDiffDate.toString().toInt())} 남았습니다."
+        }
+        else {
+            if (status == "odo") {
+                cOdoProgs.progress = 100
+                cText.text = "주행거리가 도달하여 ${text}을(를) 교체해야 합니다."
+            }
+            if (status == "date") {
+                cDateProgs.progress = 100
+                cText.text = "교체기간이 도달하여 ${text}을(를) 교체해야 합니다."
+            }
+            if (status == "both") {
+                cOdoProgs.progress = 100
+                cDateProgs.progress = 100
+                cText.text = "주행거리 및 교체기간이 모두 도달하여 ${text}을(를) 교체해야 합니다."
+            }
+        }
+    }
+
+
     private fun daysToYearMonthDay(days: Int): Triple<Int, Int, Int> {
         val years = days / 365
         val remainingDaysAfterYears = days % 365
@@ -250,7 +208,7 @@ class RepairInfoActivity : AppCompatActivity() {
                 finish()
             }
             R.id.setting -> startActivity(Intent(this, CarInfoActivity::class.java))
-            R.id.setting -> startActivity(Intent(this, AddInfoActivity::class.java))
+            R.id.setting -> startActivity(Intent(this,AddInfoActivity::class.java))
         }
         return super.onOptionsItemSelected(item)
     }
