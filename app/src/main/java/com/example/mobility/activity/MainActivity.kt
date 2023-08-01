@@ -1,14 +1,12 @@
-package com.example.mobility
+package com.example.mobility.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
 import android.widget.Toast
-import androidx.core.text.set
+import com.example.mobility.MyApplication
 import com.example.mobility.databinding.ActivityMainBinding
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import com.google.firebase.auth.FirebaseUser
@@ -74,12 +72,8 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
                     }
-
             }
-            else
-            {
-                Toast.makeText(baseContext, "이메일 형식이 아닙니다.", Toast.LENGTH_SHORT).show()
-            }
+            Toast.makeText(baseContext, "이메일형식이 아닙니다.", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -96,7 +90,7 @@ class MainActivity : AppCompatActivity() {
     private fun moveMainpage(user:FirebaseUser?) {
         if(user != null)
         {
-            startActivity(Intent(this,RepairInfoActivity::class.java))
+            startActivity(Intent(this, RepairInfoActivity::class.java))
             Toast.makeText(applicationContext, user.email.toString() + "님 환영합니다.", Toast.LENGTH_SHORT).show()
         }
     }
