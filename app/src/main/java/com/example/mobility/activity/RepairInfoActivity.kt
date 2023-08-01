@@ -1,11 +1,11 @@
 package com.example.mobility.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import com.example.mobility.MyApplication
 import com.example.mobility.MyApplication.Companion.db
 import com.example.mobility.R
@@ -132,7 +132,7 @@ class RepairInfoActivity : AppCompatActivity() {
         }
 
         // 둘다 초과하지 않은 경우
-        return arrayOf("false", diffOdo, diffDate)
+        return arrayOf("false", diffOdo, diffDate)a
     }
 
     /*
@@ -171,18 +171,29 @@ class RepairInfoActivity : AppCompatActivity() {
         else {
             if (status == "odo") {
                 cOdoProgs.progress = 100
-                cText.text = "주행거리가 도달하여 ${text}을(를) 교체해야 합니다."
+                cText.text = "주행거리가 도달하여 ${getParticle(text, "을", "를")} 교체해야 합니다."
             }
             if (status == "date") {
                 cDateProgs.progress = 100
-                cText.text = "교체기간이 도달하여 ${text}을(를) 교체해야 합니다."
+                cText.text = "교체기간이 도달하여 ${getParticle(text, "을", "를")} 교체해야 합니다."
             }
             if (status == "both") {
                 cOdoProgs.progress = 100
                 cDateProgs.progress = 100
-                cText.text = "주행거리 및 교체기간이 모두 도달하여 ${text}을(를) 교체해야 합니다."
+                cText.text = "주행거리 및 교체기간이 모두 도달하여 ${getParticle(text, "을", "를")} 교체해야 합니다."
             }
         }
+    }
+
+    // 한글 받침에 따른 조사 처리
+    private fun getParticle(name: String, firstValue: String, secondValue: String?): String? {
+        val lastName = name[name.length - 1]
+
+        if (lastName.code < 0xAC00 || lastName.code > 0xD7A3) {
+            return name
+        }
+        val selectedValue = if ((lastName.code - 0xAC00) % 28 > 0) firstValue else secondValue!!
+        return name + selectedValue
     }
 
 
