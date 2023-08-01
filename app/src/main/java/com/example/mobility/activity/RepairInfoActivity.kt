@@ -35,6 +35,8 @@ class RepairInfoActivity : AppCompatActivity() {
         // 엔진오일
         var engOdo = data.RepairInfo["engineOdo"].toString()
         var engDate = data.RepairInfo["engineDate"].toString()
+        Log.d("engineOdo", engOdo)
+        Log.d("engineDate", engDate)
         val eOdoRepair = 15000
         val eDateRepair = 365
         this.dispInfo("엔진오일", odo, engOdo, engDate, eOdoRepair, eDateRepair)
@@ -42,6 +44,8 @@ class RepairInfoActivity : AppCompatActivity() {
         // 에어컨 필터
         var acOdo = data.RepairInfo["acOdo"].toString()
         var acDate = data.RepairInfo["acDate"].toString()
+        Log.d("acOdo", engOdo)
+        Log.d("acDate", acDate)
         val acOdoRepair = 15000
         val acDateRepair = 180
         this.dispInfo("에어컨 필터", odo, acOdo, acDate, acOdoRepair, acDateRepair)
@@ -49,6 +53,8 @@ class RepairInfoActivity : AppCompatActivity() {
         // 타이어
         var tireOdo = data.RepairInfo["tireOdo"].toString()
         var tireDate = data.RepairInfo["tireDate"].toString()
+        Log.d("tireOdo", tireOdo)
+        Log.d("tireDate", tireDate)
         val tireOdoRepair = 45000
         val tireDateRepair = 1095 // 3년
         this.dispInfo("타이어", odo, tireOdo, tireDate, tireOdoRepair, tireDateRepair)
