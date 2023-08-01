@@ -1,4 +1,4 @@
-package com.example.mobility
+package com.example.mobility.activity
 
 import android.R
 import android.content.Intent
@@ -7,11 +7,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
+import com.example.mobility.MyApplication
 import com.example.mobility.MyApplication.Companion.db
 import com.example.mobility.databinding.ActivitySignUpBinding
 import com.example.mobility.model.ItemData
 import com.google.firebase.auth.FirebaseAuth
-import java.lang.Exception
 
 class SignUpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,7 +47,7 @@ class SignUpActivity : AppCompatActivity() {
                                     Toast.makeText(baseContext,"회원가입 성공, 전송된 메일을 확인해 주세요.", Toast.LENGTH_SHORT).show()
 
                                     FirebaseAuth.getInstance().signOut()
-                                    startActivity(Intent(this,MainActivity::class.java))
+                                    startActivity(Intent(this, MainActivity::class.java))
                                     finish()
                                 } else {
                                     Toast.makeText(this, "메일 발송 실패", Toast.LENGTH_SHORT).show()

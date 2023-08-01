@@ -1,4 +1,4 @@
-package com.example.mobility
+package com.example.mobility.activity
 
 import android.R
 import android.content.Intent
@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.example.mobility.MyApplication
 import com.example.mobility.MyApplication.Companion.db
 import com.example.mobility.databinding.ActivityCarInfoBinding
 import com.example.mobility.model.ItemData
@@ -80,7 +81,7 @@ class CarInfoActivity : AppCompatActivity() {
 
         binding.logout.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
-            startActivity(Intent(this,MainActivity::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
             Toast.makeText(this,"로그아웃",Toast.LENGTH_SHORT).show()
             finish()
         }
@@ -90,5 +91,14 @@ class CarInfoActivity : AppCompatActivity() {
             R.id.home -> finish()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val currentUser = MyApplication.auth?.currentUser
+        if (currentUser != null) {
+            Log.d("kkang","현재 유저는 ${currentUser.uid} 입니다.")
+        }
+
     }
 }

@@ -1,22 +1,13 @@
-package com.example.mobility
+package com.example.mobility.activity
 
 import android.R
-import android.app.DatePickerDialog
-import android.app.DatePickerDialog.OnDateSetListener
-import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.DatePicker
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mobility.databinding.ActivityAddInfoBinding
-import org.w3c.dom.Text
-import java.text.SimpleDateFormat
 import java.time.LocalDate
-import java.util.Calendar
-import java.util.Date
 
 
 class AddInfoActivity : AppCompatActivity() {
