@@ -44,7 +44,7 @@ class RepairInfoActivity : AppCompatActivity() {
         // 에어컨 필터
         var acOdo = data.RepairInfo["acOdo"].toString()
         var acDate = data.RepairInfo["acDate"].toString()
-        Log.d("acOdo", engOdo)
+        Log.d("acOdo", acOdo)
         Log.d("acDate", acDate)
         val acOdoRepair = 15000
         val acDateRepair = 180
