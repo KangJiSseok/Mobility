@@ -236,6 +236,7 @@ class RepairInfoActivity : AppCompatActivity() {
                 finish()
             }
             R.id.setting -> startActivity(Intent(this,CarInfoActivity::class.java))
+            R.id.setting2 -> startActivity(Intent(this,AddInfoActivity::class.java))
         }
         return super.onOptionsItemSelected(item)
     }
