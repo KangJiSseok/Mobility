@@ -2,6 +2,7 @@ package com.example.mobility.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import com.example.mobility.MyApplication
 import com.example.mobility.R
 import com.example.mobility.databinding.ActivityUpdateRepairBinding
@@ -19,6 +20,7 @@ class UpdateRepairActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityUpdateRepairBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         // Intent 에서 데이터 가져오기
         val intent = getIntent()
@@ -53,5 +55,12 @@ class UpdateRepairActivity : AppCompatActivity() {
         }
         val selectedValue = if ((lastName.code - 0xAC00) % 28 > 0) firstValue else secondValue!!
         return name + selectedValue
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> finish()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

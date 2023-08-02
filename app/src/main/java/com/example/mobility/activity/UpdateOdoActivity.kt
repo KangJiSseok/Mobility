@@ -2,6 +2,7 @@ package com.example.mobility.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.mobility.MyApplication
@@ -22,6 +23,7 @@ class UpdateOdoActivity : AppCompatActivity() {
         binding = ActivityUpdateOdoBinding.inflate(layoutInflater)
         setContentView(binding.root)
         title = "주행 거리 업데이트"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true);
 
         CoroutineScope(Dispatchers.Main).launch {
             val documents = withContext(Dispatchers.IO) {
@@ -82,5 +84,12 @@ class UpdateOdoActivity : AppCompatActivity() {
 
             binding.previousOdo.text = "이전 주행 거리: ${data.CarInfo["odo"]} km"
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> finish()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
