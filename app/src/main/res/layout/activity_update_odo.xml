@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:textSize="20dp"
             android:text="주행 거리를 업데이트해 주세요"
-            android:textStyle=""
+            />
     </LinearLayout>
 
 

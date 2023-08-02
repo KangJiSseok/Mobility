@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mobility.MyApplication
 import com.example.mobility.MyApplication.Companion.db
@@ -30,6 +31,18 @@ class RepairInfoActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         title = "남은 주행 거리와 기간"
+
+        binding.layoutEng.setOnClickListener {
+            Toast.makeText(this,"eng",Toast.LENGTH_SHORT).show()
+        }
+
+        binding.layoutAc.setOnClickListener {
+            Toast.makeText(this,"ac",Toast.LENGTH_SHORT).show()
+        }
+
+        binding.layoutTire.setOnClickListener {
+            Toast.makeText(applicationContext,"tire",Toast.LENGTH_SHORT).show()
+        }
 
         binding.btnFloat.setOnClickListener {
             if (binding.btnFloat.isExtended) binding.btnFloat.shrink() else binding.btnFloat.extend()
