@@ -45,7 +45,9 @@ class RepairInfoActivity : AppCompatActivity() {
         }
 
         binding.btnFloat.setOnClickListener {
-            if (binding.btnFloat.isExtended) binding.btnFloat.shrink() else binding.btnFloat.extend()
+            // UpdateOdoActivity 실행
+            val intent = Intent(this, UpdateOdoActivity::class.java)
+            startActivity(intent)
         }
     }
 
