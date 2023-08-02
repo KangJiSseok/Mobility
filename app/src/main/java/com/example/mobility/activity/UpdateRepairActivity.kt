@@ -2,11 +2,19 @@ package com.example.mobility.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.mobility.MyApplication
 import com.example.mobility.R
 import com.example.mobility.databinding.ActivityUpdateRepairBinding
+import com.example.mobility.model.ItemData
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 class UpdateRepairActivity : AppCompatActivity() {
     lateinit var binding: ActivityUpdateRepairBinding
+    var data = ItemData()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityUpdateRepairBinding.inflate(layoutInflater)
@@ -19,6 +27,21 @@ class UpdateRepairActivity : AppCompatActivity() {
         title = "${part} 교체 정보 입력"
 
         binding.infoTitle.text = "${getParticle(part.toString(), "을", "를")}\n언제 교체하셨나요?"
+
+        CoroutineScope(Dispatchers.Main).launch {
+            val documents = withContext(Dispatchers.IO) {
+                MyApplication.db.collection(MyApplication.auth.currentUser!!.uid).get().await()
+            }
+            for (document in documents) {
+                when (document.id) {
+                    "CarInfo" -> data.CarInfo = document.data as HashMap<String, String>
+                    "RepairInfo" -> data.RepairInfo = document.data as HashMap<String, String>
+                    "Profile" -> data.Profile = document.data as HashMap<String, String>
+                }
+            }
+
+            binding.odo.text = "현재 주행 거리: ${data.CarInfo["odo"]} km"
+        }
     }
 
     // 한글 받침에 따른 조사 처리
