@@ -210,7 +210,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right|bottom"
         android:layout_margin="20dp"
-        app:icon="@drawable/baseline_create_24"
-        android:text="정비 기록 추가"/>
+        app:icon="@drawable/baseline_create_24" />
 
 </FrameLayout>
