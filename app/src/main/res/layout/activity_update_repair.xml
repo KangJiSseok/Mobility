@@ -59,7 +59,7 @@
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:hint="누적 주행거리"
-                android:id="@+id/engOdo"
+                android:id="@+id/newOdo"
                 android:inputType="number" />
             <TextView
                 android:layout_width="50dp"
@@ -80,7 +80,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="25dp"/>
             <DatePicker
-                android:id="@+id/engDate"
+                android:id="@+id/newDate"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:calendarViewShown="false"
