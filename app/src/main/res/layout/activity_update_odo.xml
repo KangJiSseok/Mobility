@@ -75,7 +75,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="80dp"
-            android:text="업데이트"
+            android:text="입력 완료"
             android:id="@+id/submit" />
 
     </LinearLayout>
