@@ -48,7 +48,7 @@ class UpdateRepairActivity : AppCompatActivity() {
                 "에어컨 필터" -> code = "ac"
                 "타이어" -> code = "tire"
             }
-            binding.odo.text = "현재 주행 거리: ${data.CarInfo["odo"]} km\n이전 교체 일자: ${data.RepairInfo["${code}Date"]}"
+            binding.odo.text = "이전 주행 거리: ${data.RepairInfo["${code}Odo"]} km\n이전 교체 일자: ${data.RepairInfo["${code}Date"]}"
         }
     }
 
