@@ -3,6 +3,7 @@ package com.example.mobility.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.example.mobility.MyApplication
 import com.example.mobility.R
 import com.example.mobility.databinding.ActivityUpdateOdoBinding
@@ -38,18 +39,30 @@ class UpdateOdoActivity : AppCompatActivity() {
         }
 
         binding.submit.setOnClickListener {
-            val odo = binding.odo.text.toString()
-            if (odo.isNotEmpty()) {
-                // 차량 정보 등록 (서버)
-                data.CarInfo["odo"] = binding.odo.text.toString()
-                MyApplication.db.collection(MyApplication.auth.currentUser!!.uid).document("CarInfo").update(data.CarInfo as Map<String, Any>)
-                    .addOnCompleteListener{
-                        if (it.isSuccessful){
-                            Toast.makeText(applicationContext, "성공", Toast.LENGTH_SHORT).show()
-                        }
-                    }
-                finish()
+            val odo = binding.odo.text.toString().trim()
+            if (odo.toInt() < data.CarInfo["odo"]!!.toInt()) {
+                var loginfailalert = AlertDialog.Builder(this)
+                loginfailalert.setMessage("입력된 주행 거리가 이전 주행 거리보다 작습니다.")
+                loginfailalert.setPositiveButton("확인", null)
+                loginfailalert.show()
+                return@setOnClickListener
             }
+            if (odo.isNullOrEmpty()) {
+                var loginfailalert = AlertDialog.Builder(this)
+                loginfailalert.setMessage("주행 거리를 입력해 주세요.")
+                loginfailalert.setPositiveButton("확인", null)
+                loginfailalert.show()
+                return@setOnClickListener
+            }
+
+            data.CarInfo["odo"] = binding.odo.text.toString()
+            MyApplication.db.collection(MyApplication.auth.currentUser!!.uid).document("CarInfo").update(data.CarInfo as Map<String, Any>)
+                .addOnCompleteListener{
+                    if (it.isSuccessful){
+                        Toast.makeText(applicationContext, "주행 거리가 업데이트 되었습니다.", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            finish()
         }
     }
 
