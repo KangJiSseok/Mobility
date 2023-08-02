@@ -42,7 +42,13 @@ class UpdateRepairActivity : AppCompatActivity() {
                 }
             }
 
-            binding.odo.text = "현재 주행 거리: ${data.CarInfo["odo"]} km"
+            var code = ""
+            when (part) {
+                "엔진오일" -> code = "engine"
+                "에어컨 필터" -> code = "ac"
+                "타이어" -> code = "tire"
+            }
+            binding.odo.text = "현재 주행 거리: ${data.CarInfo["odo"]} km\n이전 교체 일자: ${data.RepairInfo["${code}Date"]}"
         }
     }
 

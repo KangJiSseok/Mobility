@@ -9,7 +9,7 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="130dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:layout_marginTop="40dp"
@@ -17,7 +17,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="현재 주행 거리: 12000 km"
+        android:text="현재 주행 거리: 12000 km\n이전 교체 일자: 2022-08-01"
         android:id="@+id/odo"
         android:textSize="18dp"
         android:layout_marginBottom="20dp"
