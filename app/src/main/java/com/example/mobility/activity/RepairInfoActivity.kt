@@ -33,15 +33,21 @@ class RepairInfoActivity : AppCompatActivity() {
         title = "남은 주행 거리와 기간"
 
         binding.layoutEng.setOnClickListener {
-            Toast.makeText(this,"eng",Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, UpdateRepairActivity::class.java)
+            intent.putExtra("part", "엔진오일")
+            startActivity(intent)
         }
 
         binding.layoutAc.setOnClickListener {
-            Toast.makeText(this,"ac",Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, UpdateRepairActivity::class.java)
+            intent.putExtra("part", "에어컨 필터")
+            startActivity(intent)
         }
 
         binding.layoutTire.setOnClickListener {
-            Toast.makeText(applicationContext,"tire",Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, UpdateRepairActivity::class.java)
+            intent.putExtra("part", "타이어")
+            startActivity(intent)
         }
 
         binding.btnFloat.setOnClickListener {

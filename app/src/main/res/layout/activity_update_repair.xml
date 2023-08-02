@@ -20,7 +20,7 @@
         android:text="현재 주행 거리: 12000 km"
         android:id="@+id/odo"
         android:textSize="18dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"/>
@@ -39,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="25dp"
-            android:text="정비 정보 업데이트"
+            android:text="엔진오일을\n언제 교체하셨나요?"
             android:textStyle="bold"
             android:id="@+id/infoTitle" />
 
@@ -92,7 +92,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:text="입력 완료"
             android:id="@+id/submit" />
 
