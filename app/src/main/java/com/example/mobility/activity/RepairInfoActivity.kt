@@ -31,45 +31,9 @@ class RepairInfoActivity : AppCompatActivity() {
 
         title = "남은 주행 거리와 기간"
 
-        // 챠량정보를 DB에서 가져오기
-        CoroutineScope(Dispatchers.Main).launch {
-            val documents = withContext(Dispatchers.IO){
-                db.collection(MyApplication.auth.currentUser!!.uid).get().await()
-            }
-            for (document in documents){
-                when (document.id) {
-                    "CarInfo" -> data.CarInfo = document.data as HashMap<String, String>
-                    "RepairInfo" -> data.RepairInfo = document.data as HashMap<String, String>
-                    "Profile" -> data.Profile = document.data as HashMap<String, String>
-                }
-            }
-
-            var car = data.CarInfo["model"].toString()
-            var year = data.CarInfo["year"].toString()
-            var odo = data.CarInfo["odo"].toString()
-
-            // 엔진오일
-            var engOdo = data.RepairInfo["engineOdo"].toString()
-            var engDate = data.RepairInfo["engineDate"].toString()
-            val eOdoRepair = 15000
-            val eDataRepair = 365
-            this.dispInfo("엔진오일", odo, engOdo, engDate, eOdoRepair, eDataRepair)
-
-            // 에어컨 필터
-            var acOdo = data.RepairInfo["acOdo"].toString()
-            var acDate = data.RepairInfo["acDate"].toString()
-            val acOdoRepair = 15000
-            val acDateRepair = 180
-            this.dispInfo("에어컨 필터", odo, acOdo, acDate, acOdoRepair, acDateRepair)
-
-            // 타이어
-            var tireOdo = data.RepairInfo["tireOdo"].toString()
-            var tireDate = data.RepairInfo["tireDate"].toString()
-            val tireOdoRepair = 45000
-            val tireDateRepair = 1095 // 3년
-            this.dispInfo("타이어", odo, tireOdo, tireDate, tireOdoRepair, tireDateRepair)
+        binding.btnFloat.setOnClickListener {
+            if (binding.btnFloat.isExtended) binding.btnFloat.shrink() else binding.btnFloat.extend()
         }
-
     }
 
     // 화면이 다시 시작할 때마다 업데이트
@@ -91,6 +55,8 @@ class RepairInfoActivity : AppCompatActivity() {
             var car = data.CarInfo["model"].toString()
             var year = data.CarInfo["year"].toString()
             var odo = data.CarInfo["odo"].toString()
+
+            binding.carName.text = "${year}년식 ${car}"
 
             // 엔진오일
             var engOdo = data.RepairInfo["engineOdo"].toString()
