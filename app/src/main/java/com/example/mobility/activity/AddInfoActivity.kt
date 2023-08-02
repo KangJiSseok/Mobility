@@ -51,6 +51,10 @@ class AddInfoActivity : AppCompatActivity() {
                 }
             }
             odo = data.CarInfo["odo"].toString()
+
+            binding.engOdo.setText(data.RepairInfo["engineOdo"])
+            binding.acOdo.setText(data.RepairInfo["acOdo"])
+            binding.tireOdo.setText(data.RepairInfo["tireOdo"])
         }
 
         // 등록하기 버튼 클릭 시 DB 저장

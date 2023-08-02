@@ -13,7 +13,11 @@ import com.example.mobility.MyApplication.Companion.db
 import com.example.mobility.databinding.ActivityCarInfoBinding
 import com.example.mobility.model.ItemData
 import com.google.firebase.auth.FirebaseAuth
-
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 
 class CarInfoActivity : AppCompatActivity() {
@@ -37,6 +41,23 @@ class CarInfoActivity : AppCompatActivity() {
                     "Profile" -> data.Profile = document.data as HashMap<String, String>
                 }
             }
+        }
+
+        CoroutineScope(Dispatchers.Main).launch {
+            val documents = withContext(Dispatchers.IO) {
+                db.collection(MyApplication.auth.currentUser!!.uid).get().await()
+            }
+            for (document in documents) {
+                when (document.id) {
+                    "CarInfo" -> data.CarInfo = document.data as HashMap<String, String>
+                    "RepairInfo" -> data.RepairInfo = document.data as HashMap<String, String>
+                    "Profile" -> data.Profile = document.data as HashMap<String, String>
+                }
+            }
+
+            binding.car.setText(data.CarInfo["model"])
+            binding.year.setText(data.CarInfo["year"])
+            binding.odo.setText(data.CarInfo["odo"])
         }
 
         // 차종, 연식, 주행 거리를 입력받음
