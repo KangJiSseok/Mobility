@@ -41,6 +41,7 @@
             android:textSize="25dp"
             android:text="엔진오일을\n언제 교체하셨나요?"
             android:textStyle="bold"
+            android:textColor="@color/black"
             android:id="@+id/infoTitle" />
 
 
@@ -53,6 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="주행거리"
+                android:textColor="@color/black"
                 android:textSize="18dp"
                 android:layout_marginRight="20dp"/>
             <EditText
@@ -76,6 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="교체날짜"
+                android:textColor="@color/black"
                 android:textSize="18dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="25dp"/>

@@ -38,6 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="엔진오일 및 오일필터"
+            android:textColor="@color/black"
             android:textSize="20dp"
             android:textStyle="bold"
             android:layout_marginBottom="10dp"/>
