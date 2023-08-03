@@ -116,15 +116,8 @@ class RepairInfoActivity : AppCompatActivity() {
         val odos = odo.toInt()
         var diffOdo = totalOdos - odos
 
-        // 오늘 날짜
-        val today = Calendar.getInstance()
-
-        // date 변수에는 2023-07-26 형식의 날짜가 들어감
-        val sf = SimpleDateFormat("yyyy-MM-dd")
-        val dateValue = sf.parse(date)
-
         // 교체한지 며칠 지났는지 일수로 계산
-        var diffDate = (today.time.time - dateValue.time) / (60 * 60 * 24 * 1000)
+        var diffDate = diffDate(date)
 
         // 주행거리 또는 교체주기 둘 다 초과한 경우
         if (diffOdo >= repairOdo && diffDate >= repairDate) {
@@ -228,6 +221,19 @@ class RepairInfoActivity : AppCompatActivity() {
     private fun addCommasToNumber(number: Int): String {
         val formattedString = "%,d".format(number)
         return formattedString
+    }
+
+    private fun diffDate(date: String): Int {
+        // 오늘 날짜
+        val today = Calendar.getInstance()
+
+        // date 변수에는 2023-07-26 형식의 날짜가 들어감
+        val sf = SimpleDateFormat("yyyy-MM-dd")
+        val dateValue = sf.parse(date)
+
+        // 교체한지 며칠 지났는지 일수로 계산
+        var diffDate = (today.time.time - dateValue.time) / (60 * 60 * 24 * 1000)
+        return diffDate.toInt()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
