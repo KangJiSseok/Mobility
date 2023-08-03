@@ -9,7 +9,8 @@ class ItemData {
     var CarInfo = hashMapOf(
         "model" to "0",
         "year" to "0",
-        "odo" to "0"
+        "odo" to "0",
+        "lastDate" to "2023-07-01"
     )
     var RepairInfo = hashMapOf(
         "engineOdo" to "0",
