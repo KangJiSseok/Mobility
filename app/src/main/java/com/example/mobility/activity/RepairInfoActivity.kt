@@ -32,6 +32,11 @@ class RepairInfoActivity : AppCompatActivity() {
 
         title = "남은 주행 거리와 기간"
 
+        binding.neededUpdate.setOnClickListener {
+            val intent = Intent(this, UpdateOdoActivity::class.java)
+            startActivity(intent)
+        }
+        
         binding.layoutEng.setOnClickListener {
             val intent = Intent(this, UpdateRepairActivity::class.java)
             intent.putExtra("part", "엔진오일")
