@@ -36,7 +36,7 @@ class RepairInfoActivity : AppCompatActivity() {
             val intent = Intent(this, UpdateOdoActivity::class.java)
             startActivity(intent)
         }
-        
+
         binding.layoutEng.setOnClickListener {
             val intent = Intent(this, UpdateRepairActivity::class.java)
             intent.putExtra("part", "엔진오일")
@@ -83,6 +83,9 @@ class RepairInfoActivity : AppCompatActivity() {
             if (diffDate(lastDate) > 14) {
                 binding.neededUpdate.visibility = android.view.View.VISIBLE
                 binding.updateDate.text = "업데이트한지 ${diffDate(lastDate)}일이 지났습니다."
+            }
+            else {
+                binding.neededUpdate.visibility = android.view.View.GONE
             }
 
             var car = data.CarInfo["model"].toString()
