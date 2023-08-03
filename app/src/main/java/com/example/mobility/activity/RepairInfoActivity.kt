@@ -73,6 +73,13 @@ class RepairInfoActivity : AppCompatActivity() {
                 }
             }
 
+            // 주행거리 업데이트 확인
+            var lastDate = data.CarInfo["lastDate"].toString()
+            if (diffDate(lastDate) > 14) {
+                binding.neededUpdate.visibility = android.view.View.VISIBLE
+                binding.updateDate.text = "업데이트한지 ${diffDate(lastDate)}일이 지났습니다."
+            }
+
             var car = data.CarInfo["model"].toString()
             var year = data.CarInfo["year"].toString()
             var odo = data.CarInfo["odo"].toString()
