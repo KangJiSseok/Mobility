@@ -2,10 +2,12 @@ package com.example.mobility.activity
 
 import android.R
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mobility.MyApplication
@@ -18,9 +20,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import java.time.LocalDate
 
 
 class CarInfoActivity : AppCompatActivity() {
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityCarInfoBinding.inflate(layoutInflater)
@@ -32,16 +36,6 @@ class CarInfoActivity : AppCompatActivity() {
 
         // 챠량정보를 DB에서 가져오기
         val data = ItemData()
-
-        db.collection(MyApplication.auth.currentUser!!.uid).get().addOnSuccessListener { documents ->
-            for (document in documents){
-                when (document.id) {
-                    "CarInfo" -> data.CarInfo = document.data as HashMap<String, String>
-                    "RepairInfo" -> data.RepairInfo = document.data as HashMap<String, String>
-                    "Profile" -> data.Profile = document.data as HashMap<String, String>
-                }
-            }
-        }
 
         CoroutineScope(Dispatchers.Main).launch {
             val documents = withContext(Dispatchers.IO) {
@@ -65,6 +59,7 @@ class CarInfoActivity : AppCompatActivity() {
             val car = binding.car.text.toString().trim() // 차종
             val year = binding.year.text.toString().trim() // 연식
             val odo = binding.odo.text.toString().trim() // 주행거리
+            val Today: LocalDate = LocalDate.now()
 
             // 입력 유효성 검사
             if (car.isNullOrEmpty() || year.isNullOrEmpty() || odo.isNullOrEmpty()) {
@@ -79,6 +74,7 @@ class CarInfoActivity : AppCompatActivity() {
             data.CarInfo["model"] = binding.car.text.toString()
             data.CarInfo["year"] = binding.year.text.toString()
             data.CarInfo["odo"] = binding.odo.text.toString()
+            data.CarInfo["lastDate"] = Today.toString()
             db.collection(MyApplication.auth.currentUser!!.uid).document("CarInfo").update(data.CarInfo as Map<String, Any>)
                 .addOnCompleteListener{
                     if (it.isSuccessful){
