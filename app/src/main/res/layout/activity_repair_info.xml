@@ -19,11 +19,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/car_name"
-                    android:textSize="30dp"
+                    android:textSize="32dp"
                     android:textStyle="bold"
-                    android:layout_margin="20dp"
-                    android:padding="15dp"
-                    android:background="@drawable/radius"
+                    android:text="차량 이름"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="10dp"
                     android:elevation="20dp"/>
             </LinearLayout>
             <LinearLayout
