@@ -27,14 +27,14 @@
         style="@style/card">
         <EditText
             android:id="@+id/car"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:hint="차량 이름" />
 
         <EditText
             android:id="@+id/year"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:hint="연식"
@@ -42,7 +42,7 @@
 
         <EditText
             android:id="@+id/odo"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:hint="주행거리 (km)"
@@ -58,7 +58,6 @@
         android:id="@+id/submit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:text="등록하기" />
 </LinearLayout>
 
