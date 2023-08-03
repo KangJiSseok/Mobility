@@ -19,12 +19,6 @@ class MainActivity : AppCompatActivity() {
 
         title = "모빌리티 관리 앱"
 
-
-        binding.btnSkip.setOnClickListener {
-            val intent = Intent(this, CarInfoActivity::class.java)
-            startActivity(intent)
-        }
-
         //회원가입 시작
         binding.btnGotoSignup.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
