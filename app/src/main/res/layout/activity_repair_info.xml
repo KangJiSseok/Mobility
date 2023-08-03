@@ -59,8 +59,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="?android:attr/progressBarStyleHorizontal"
-                    android:scaleY="2"
-                    android:id="@+id/engOdoProgs" />
+                    android:scaleY="0.5"
+                    android:id="@+id/engOdoProgs"
+                    android:indeterminate="false"
+                    android:progressDrawable="@drawable/progressbar"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -70,8 +72,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="?android:attr/progressBarStyleHorizontal"
-                    android:scaleY="2"
-                    android:id="@+id/engDateProgs"/>
+                    android:id="@+id/engDateProgs"
+                    android:scaleY="0.5"
+                    android:indeterminate="false"
+                    android:progressDrawable="@drawable/progressbar"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -119,8 +123,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="?android:attr/progressBarStyleHorizontal"
-                    android:scaleY="2"
-                    android:id="@+id/acOdoProgs"/>
+                    android:id="@+id/acOdoProgs"
+                    android:scaleY="0.5"
+                    android:indeterminate="false"
+                    android:progressDrawable="@drawable/progressbar"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -130,8 +136,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="?android:attr/progressBarStyleHorizontal"
-                    android:scaleY="2"
-                    android:id="@+id/acDateProgs"/>
+                    android:id="@+id/acDateProgs"
+                    android:scaleY="0.5"
+                    android:indeterminate="false"
+                    android:progressDrawable="@drawable/progressbar"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -178,8 +186,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="?android:attr/progressBarStyleHorizontal"
-                    android:scaleY="2"
-                    android:id="@+id/tireOdoProgs"/>
+                    android:id="@+id/tireOdoProgs"
+                    android:scaleY="0.5"
+                    android:indeterminate="false"
+                    android:progressDrawable="@drawable/progressbar"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -189,8 +199,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="?android:attr/progressBarStyleHorizontal"
-                    android:scaleY="2"
-                    android:id="@+id/tireDateProgs"/>
+                    android:id="@+id/tireDateProgs"
+                    android:scaleY="0.5"
+                    android:indeterminate="false"
+                    android:progressDrawable="@drawable/progressbar"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -198,47 +210,6 @@
                     android:text="주행거리가 도달하여 교체해야 합니다."
                     android:id="@+id/tireText"
                     android:textColor="#373737"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="20dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="예시"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="10dp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="주행거리"
-                    android:textSize="16dp"/>
-                <ProgressBar
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:scaleY="2"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="기간"
-                    android:textSize="16dp"/>
-                <ProgressBar
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:scaleY="2"
-                    />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="주행거리가 도달하여 교체해야 합니다."
-                    />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
