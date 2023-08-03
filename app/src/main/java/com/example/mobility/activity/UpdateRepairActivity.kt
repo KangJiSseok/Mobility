@@ -29,7 +29,6 @@ class UpdateRepairActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         // Intent 에서 데이터 가져오기
-        val intent = getIntent()
         val part = intent.getStringExtra("part")
 
         title = "${part} 교체 정보 입력"
