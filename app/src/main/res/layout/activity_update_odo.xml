@@ -45,7 +45,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="12일째 업데이트되지 않았어요"
+            android:text="오늘 업데이트되었어요"
             android:textSize="16dp"
             android:layout_marginTop="8dp"
             android:id="@+id/updateText" />
