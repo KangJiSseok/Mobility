@@ -12,16 +12,20 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#f5f6f7">
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/car_name"
-                android:textSize="30dp"
-                android:textStyle="bold"
-                android:layout_margin="20dp"
-                android:padding="10dp"
-                android:background="@drawable/radius"
-                android:elevation="20dp"/>
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/car_name"
+                    android:textSize="30dp"
+                    android:textStyle="bold"
+                    android:layout_margin="20dp"
+                    android:padding="15dp"
+                    android:background="@drawable/radius"
+                    android:elevation="20dp"/>
+            </LinearLayout>
             <LinearLayout
                 android:id="@+id/layout_eng"
                 android:layout_width="match_parent"

@@ -68,24 +68,6 @@ class UpdateOdoActivity : AppCompatActivity() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        CoroutineScope(Dispatchers.Main).launch {
-            val documents = withContext(Dispatchers.IO) {
-                MyApplication.db.collection(MyApplication.auth.currentUser!!.uid).get().await()
-            }
-            for (document in documents) {
-                when (document.id) {
-                    "CarInfo" -> data.CarInfo = document.data as HashMap<String, String>
-                    "RepairInfo" -> data.RepairInfo = document.data as HashMap<String, String>
-                    "Profile" -> data.Profile = document.data as HashMap<String, String>
-                }
-            }
-
-            binding.previousOdo.text = "이전 주행 거리: ${data.CarInfo["odo"]} km"
-        }
-    }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> finish()
