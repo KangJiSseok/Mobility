@@ -19,7 +19,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/car_name"
-                    android:textSize="32dp"
+                    android:textSize="34dp"
                     android:textStyle="bold"
                     android:text="차량 이름"
                     android:textColor="@color/black"
