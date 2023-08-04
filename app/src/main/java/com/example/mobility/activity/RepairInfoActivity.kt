@@ -54,12 +54,7 @@ class RepairInfoActivity : AppCompatActivity() {
             intent.putExtra("part", "타이어")
             startActivity(intent)
         }
-
-        binding.btnFloat.setOnClickListener {
-            // UpdateOdoActivity 실행
-            val intent = Intent(this, UpdateOdoActivity::class.java)
-            startActivity(intent)
-        }
+        
     }
 
     // 화면이 다시 시작할 때마다 업데이트
