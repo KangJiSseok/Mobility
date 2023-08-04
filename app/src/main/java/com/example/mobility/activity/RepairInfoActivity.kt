@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mobility.MyApplication
@@ -54,7 +55,7 @@ class RepairInfoActivity : AppCompatActivity() {
             intent.putExtra("part", "타이어")
             startActivity(intent)
         }
-        
+
     }
 
     // 화면이 다시 시작할 때마다 업데이트
@@ -109,6 +110,8 @@ class RepairInfoActivity : AppCompatActivity() {
             val tireOdoRepair = 45000
             val tireDateRepair = 1095 // 3년
             this.dispInfo("타이어", odo, tireOdo, tireDate, tireOdoRepair, tireDateRepair)
+
+            binding.layoutLoding.visibility = View.INVISIBLE
         }
     }
 
