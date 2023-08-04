@@ -40,6 +40,7 @@
             android:layout_height="wrap_content"
             android:textSize="23dp"
             android:text="주행 거리를 업데이트해주세요!"
+            android:textColor="@color/black"
             android:textStyle="bold"/>
 
         <TextView
