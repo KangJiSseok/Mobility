@@ -33,6 +33,16 @@ class RepairInfoActivity : AppCompatActivity() {
 
         title = "남은 주행 거리와 기간"
 
+        binding.carInfoLayout.setOnClickListener {
+            val intent = Intent(this, CarInfoActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.odoLayout.setOnClickListener {
+            val intent = Intent(this, UpdateOdoActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.neededUpdate.setOnClickListener {
             val intent = Intent(this, UpdateOdoActivity::class.java)
             startActivity(intent)
@@ -87,6 +97,7 @@ class RepairInfoActivity : AppCompatActivity() {
             var car = data.CarInfo["model"].toString()
             var year = data.CarInfo["year"].toString()
             var odo = data.CarInfo["odo"].toString()
+            binding.totalOdo.text = "${addCommasToNumber(odo.toInt())} km"
 
             binding.carName.text = "${year}년식 ${car}"
 

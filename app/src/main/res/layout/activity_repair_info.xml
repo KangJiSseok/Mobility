@@ -11,6 +11,7 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:id="@+id/car_info_layout"
             android:background="#f5f6f7">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -29,6 +30,30 @@
                     android:layout_marginRight="10dp"
                     android:elevation="20dp"/>
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/odo_layout"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="누적 주행 거리  > "
+                    android:textSize="18dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="0 km"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:id="@+id/total_odo"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/needed_update"
                 android:layout_width="match_parent"
@@ -52,6 +77,7 @@
                         android:layout_height="wrap_content"
                         android:text="주행거리 업데이트가 필요합니다!"
                         android:textSize="20dp"
+                        android:textColor="@color/black"
                         android:textStyle="bold"
                         android:layout_marginLeft="5dp"
                         />
