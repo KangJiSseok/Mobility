@@ -266,8 +266,6 @@ class RepairInfoActivity : AppCompatActivity() {
                 FirebaseAuth.getInstance().signOut()
                 finish()
             }
-            R.id.setting -> startActivity(Intent(this, CarInfoActivity::class.java))
-            R.id.repair -> startActivity(Intent(this,AddInfoActivity::class.java))
         }
         return super.onOptionsItemSelected(item)
     }
