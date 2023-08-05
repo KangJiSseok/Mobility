@@ -49,6 +49,7 @@ class SignUpActivity : AppCompatActivity() {
                                     data.RepairInfo["engineDate"] = DateNow.toString()
                                     data.RepairInfo["acDate"] = DateNow.toString()
                                     data.RepairInfo["tireDate"] = DateNow.toString()
+                                    data.CarInfo["lastDate"] = DateNow.toString()
                                     db.collection(MyApplication.auth.currentUser!!.uid).document("Profile").set(data.Profile)
                                     db.collection(MyApplication.auth.currentUser!!.uid).document("CarInfo").set(data.CarInfo)
                                     db.collection(MyApplication.auth.currentUser!!.uid).document("RepairInfo").set(data.RepairInfo)
