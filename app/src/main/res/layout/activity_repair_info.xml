@@ -121,7 +121,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="주행거리"
-                    android:textSize="16dp"/>
+                    android:textSize="12dp"/>
                 <ProgressBar
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -134,7 +134,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="기간"
-                    android:textSize="16dp"/>
+                    android:textSize="12dp"/>
                 <ProgressBar
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -149,7 +149,8 @@
                     android:layout_height="wrap_content"
                     android:text="교체까지 3000km, 120일 남았습니다."
                     android:id="@+id/engText"
-                    android:textColor="#373737"/>
+                    android:textColor="#373737"
+                    android:layout_marginTop="10dp"/>
 
             </LinearLayout>
 
@@ -183,7 +184,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="주행거리"
-                    android:textSize="16dp"/>
+                    android:textSize="12dp"/>
                 <ProgressBar
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -196,7 +197,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="기간"
-                    android:textSize="16dp"/>
+                    android:textSize="12dp"/>
                 <ProgressBar
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -211,7 +212,8 @@
                     android:layout_height="wrap_content"
                     android:text="기간이 도달하여 교체해야 합니다."
                     android:id="@+id/acText"
-                    android:textColor="#373737"/>
+                    android:textColor="#373737"
+                    android:layout_marginTop="10dp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -245,7 +247,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="주행거리"
-                    android:textSize="16dp"/>
+                    android:textSize="12dp"/>
                 <ProgressBar
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -258,7 +260,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="기간"
-                    android:textSize="16dp"/>
+                    android:textSize="12dp"/>
                 <ProgressBar
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -273,7 +275,8 @@
                     android:layout_height="wrap_content"
                     android:text="주행거리가 도달하여 교체해야 합니다."
                     android:id="@+id/tireText"
-                    android:textColor="#373737"/>
+                    android:textColor="#373737"
+                    android:layout_marginTop="10dp"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

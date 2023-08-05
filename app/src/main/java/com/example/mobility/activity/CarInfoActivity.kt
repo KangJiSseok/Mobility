@@ -59,7 +59,7 @@ class CarInfoActivity : AppCompatActivity() {
             val car = binding.car.text.toString().trim() // 차종
             val year = binding.year.text.toString().trim() // 연식
             val odo = binding.odo.text.toString().trim() // 주행거리
-            val Today: LocalDate = LocalDate.now()
+            val today: LocalDate = LocalDate.now()
 
             // 입력 유효성 검사
             if (car.isNullOrEmpty() || year.isNullOrEmpty() || odo.isNullOrEmpty()) {
@@ -74,7 +74,7 @@ class CarInfoActivity : AppCompatActivity() {
             data.CarInfo["model"] = binding.car.text.toString()
             data.CarInfo["year"] = binding.year.text.toString()
             data.CarInfo["odo"] = binding.odo.text.toString()
-            data.CarInfo["lastDate"] = Today.toString()
+            data.CarInfo["lastDate"] = today.toString()
             db.collection(MyApplication.auth.currentUser!!.uid).document("CarInfo").update(data.CarInfo as Map<String, Any>)
                 .addOnCompleteListener{
                     if (it.isSuccessful){
