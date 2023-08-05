@@ -12,6 +12,7 @@ import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.example.mobility.activity.MainActivity
+import com.example.mobility.activity.UpdateOdoActivity
 
 
 class NotificationReceiver : BroadcastReceiver() {
@@ -41,7 +42,7 @@ class NotificationReceiver : BroadcastReceiver() {
             NotificationCompat.Builder(context)
         }
 
-        val intent = Intent(context, MainActivity::class.java)
+        val intent = Intent(context, UpdateOdoActivity::class.java)
 
 
         val pendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
