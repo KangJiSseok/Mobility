@@ -161,6 +161,23 @@
                 android:orientation="vertical"
                 style="@style/card"
                 android:layout_marginTop="20dp">
+
+                <LinearLayout
+                    android:id="@+id/layout_loding"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#DFFFFFFF"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Loding..."
+                        android:textSize="30dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -277,6 +294,11 @@
                     android:id="@+id/tireText"
                     android:textColor="#373737"
                     android:layout_marginTop="10dp"/>
+                <Button
+                    android:id="@+id/btn_google_map"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="구글맵으로 이동~"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
