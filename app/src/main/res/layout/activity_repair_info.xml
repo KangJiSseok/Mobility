@@ -297,7 +297,13 @@
         android:background="#DFFFFFFF"
         android:orientation="vertical"
         android:gravity="center"
-        android:visibility="invisible">
+        android:visibility="visible">
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spin_kit"
+            style="@style/SpinKitView.ThreeBounce"
+            app:SpinKit_Color="@color/black"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
