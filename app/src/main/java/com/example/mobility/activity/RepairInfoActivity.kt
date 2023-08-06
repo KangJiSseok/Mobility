@@ -77,6 +77,7 @@ class RepairInfoActivity : AppCompatActivity() {
     // 화면이 다시 시작할 때마다 업데이트
     override fun onResume() {
         super.onResume()
+        binding.layoutLoding.visibility = View.VISIBLE
         //ㅂㅣ동기로 처리
         CoroutineScope(Dispatchers.Main).launch {
             val documents = withContext(Dispatchers.IO){

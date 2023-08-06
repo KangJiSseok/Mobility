@@ -12,6 +12,7 @@ import android.os.Bundle
 import android.os.Looper
 import android.provider.Settings
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
 import android.widget.Button
@@ -77,6 +78,8 @@ class GoogleMapActivity() : AppCompatActivity(), OnMapReadyCallback,
     // (참고로 Toast에서는 Context가 필요했습니다.)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        title = "주변 검색"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true);
         window.setFlags(
             WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
             WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
@@ -492,5 +495,12 @@ class GoogleMapActivity() : AppCompatActivity(), OnMapReadyCallback,
             .type(PlaceType.CAR_REPAIR) //정비소
             .build()
             .execute()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> finish()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
