@@ -209,6 +209,7 @@ class GoogleMapActivity() : AppCompatActivity(), OnMapReadyCallback,
                 if (firstLocation) {
                     setCurrentLocation(location, markerTitle, markerSnippet)
                     firstLocation = false
+                    showPlaceInformation(currentPosition!!)
                 }
 
                 mCurrentLocatiion = location
