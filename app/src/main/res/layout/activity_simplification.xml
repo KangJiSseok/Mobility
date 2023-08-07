@@ -1,431 +1,583 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <LinearLayout
-        android:orientation="vertical"
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <LinearLayout
-            android:id="@+id/layout_eng"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:orientation="vertical"
-            style="@style/card"
-            android:layout_marginTop="20dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginBottom="20dp"
-                android:layout_weight="1">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center"
-                    android:layout_marginBottom="10dp">
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/engine_oil"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="엔진오일"
-                        android:textSize="20dp"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"
-                        android:layout_marginLeft="5dp"/>
-                </LinearLayout>
-
-                <ProgressBar
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:id="@+id/engDateProgs"
-                    android:scaleY="0.5"
-                    android:indeterminate="false"
-                    android:progressDrawable="@drawable/progressbar"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginBottom="20dp"
-                android:layout_weight="1">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center"
-                    android:layout_marginBottom="10dp">
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/filter"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="에어컨필터"
-                        android:textSize="20dp"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"
-                        android:layout_marginLeft="5dp" />
-                </LinearLayout>
-
-                <ProgressBar
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:id="@+id/engDateProgs2"
-                    android:scaleY="0.5"
-                    android:indeterminate="false"
-                    android:progressDrawable="@drawable/progressbar"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginBottom="10dp"
-                android:layout_weight="1">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center"
-                    android:layout_marginBottom="10dp">
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/wheel"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="타이어"
-                        android:textSize="20dp"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"
-                        android:layout_marginLeft="5dp"/>
-                </LinearLayout>
-
-                <ProgressBar
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:id="@+id/engDateProgs3"
-                    android:scaleY="0.5"
-                    android:indeterminate="false"
-                    android:progressDrawable="@drawable/progressbar"/>
-            </LinearLayout>
-        </LinearLayout>
-
-        ///////////////////////////////////////////////////////////////////////////
-
-        <LinearLayout
-            android:id="@+id/layout_eng2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            style="@style/card"
-            android:layout_marginTop="20dp">
+            android:layout_height="match_parent"
+            android:background="#f5f6f7">
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:gravity="center">
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/engine_oil"/>
+                android:layout_height="wrap_content">
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="엔진오일"
-                    android:textSize="18dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
-                    android:layout_marginVertical="5dp"/>
-                <ProgressBar
-                    android:paddingHorizontal="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:id="@+id/engDateProgs4"
-                    android:scaleY="0.5"
-                    android:indeterminate="false"
-                    android:progressDrawable="@drawable/progressbar"/>
+                    android:id="@+id/car_name"
+                    android:textSize="34dp"
+                    android:textStyle="bold"
+                    android:text="차량 이름"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="10dp"
+                    android:elevation="20dp"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/odo_layout"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="누적 주행 거리  > "
+                    android:textSize="18dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="0 km"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:id="@+id/total_odo"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/needed_update"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_weight="1"
-                android:gravity="center">
+                android:padding="20dp"
+                android:background="@drawable/radius"
+                android:layout_margin="20dp"
+                android:visibility="gone"
+                android:elevation="20dp">
                 <LinearLayout
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:gravity="center">
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
                     <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/filter"/>
+                        android:layout_width="22dp"
+                        android:layout_height="33dp"
+                        android:src="@drawable/warning"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="주행거리 업데이트가 필요합니다!"
+                        android:textSize="20dp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:layout_marginLeft="5dp"
+                        />
                 </LinearLayout>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="에어컨필터"
-                    android:textSize="18dp"
-                    android:textStyle="bold"
+                    android:text="업데이트한지 13일이 지났습니다."
+                    android:id="@+id/update_date"
+                    android:textSize="16dp"
                     android:textColor="@color/black"
-                    android:layout_marginVertical="5dp"/>
-                <ProgressBar
-                    android:paddingHorizontal="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:id="@+id/engDateProgs5"
-                    android:scaleY="0.5"
-                    android:indeterminate="false"
-                    android:progressDrawable="@drawable/progressbar"/>
+                    android:layout_marginTop="8dp"/>
             </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_weight="1"
-                android:gravity="center">
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/wheel"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="타이어"
-                    android:textSize="18dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
-                    android:layout_marginVertical="5dp"/>
-                <ProgressBar
-                    android:paddingHorizontal="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:id="@+id/engDateProgs6"
-                    android:scaleY="0.5"
-                    android:indeterminate="false"
-                    android:progressDrawable="@drawable/progressbar"/>
-            </LinearLayout>
-        </LinearLayout>
-
-        ////////////////////////////////////////////////////////////////////////////
-
-        <LinearLayout
-            android:id="@+id/layout_eng3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            style="@style/card"
-            android:layout_marginTop="20dp"
-            android:padding="15dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:gravity="center">
+                style="@style/card"
+                android:layout_marginTop="20dp">
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center">
-                    <FrameLayout
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginBottom="20dp">
+                    <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="정비 목록"
+                        android:textSize="23dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/all"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="전체보기 >"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/layout_eng2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:gravity="center">
                         <ImageView
-                            android:layout_gravity="center"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:src="@drawable/engine_oil"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="엔진오일"
+                            android:textSize="18dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:layout_marginVertical="5dp"/>
                         <ProgressBar
-                            android:layout_gravity="center"
-                            android:layout_width="110dp"
-                            android:layout_height="110dp"
-                            android:id="@+id/engDateProgs7"
+                            android:paddingHorizontal="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:id="@+id/s_engProgs"
+                            android:scaleY="0.5"
                             android:indeterminate="false"
                             android:progressDrawable="@drawable/progressbar"/>
-                    </FrameLayout>
-                </LinearLayout>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="엔진오일"
-                    android:textSize="18dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
-                    android:layout_marginVertical="5dp"/>
-            </LinearLayout>
+                    </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:gravity="center">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center">
-                    <FrameLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:gravity="center">
                         <LinearLayout
                             android:layout_width="50dp"
                             android:layout_height="50dp"
-                            android:layout_gravity="center"
                             android:gravity="center">
                             <ImageView
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
                                 android:src="@drawable/filter"/>
                         </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="에어컨필터"
+                            android:textSize="18dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:layout_marginVertical="5dp"/>
                         <ProgressBar
-                            android:layout_gravity="center"
-                            android:layout_width="110dp"
-                            android:layout_height="110dp"
-                            android:id="@+id/engDateProgs8"
+                            android:paddingHorizontal="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:id="@+id/s_acProgs"
+                            android:scaleY="0.5"
                             android:indeterminate="false"
                             android:progressDrawable="@drawable/progressbar"/>
-                    </FrameLayout>
-                </LinearLayout>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="에어컨필터"
-                    android:textSize="18dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
-                    android:layout_marginVertical="5dp"/>
-            </LinearLayout>
+                    </LinearLayout>
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:gravity="center">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center">
-                    <FrameLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:gravity="center">
                         <ImageView
-                            android:layout_gravity="center"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:src="@drawable/wheel"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="타이어"
+                            android:textSize="18dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:layout_marginVertical="5dp"/>
                         <ProgressBar
-                            android:layout_gravity="center"
-                            android:layout_width="110dp"
-                            android:layout_height="110dp"
-                            android:id="@+id/engDateProgs9"
+                            android:paddingHorizontal="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:id="@+id/s_tireProgs"
+                            android:scaleY="0.5"
                             android:indeterminate="false"
                             android:progressDrawable="@drawable/progressbar"/>
-                    </FrameLayout>
+                    </LinearLayout>
                 </LinearLayout>
-                <TextView
-                    android:layout_width="wrap_content"
+
+            </LinearLayout>
+            /////////////////////////////////////////////////////////////////////
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                style="@style/card"
+                android:layout_marginTop="20dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="타이어"
-                    android:textSize="18dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
-                    android:layout_marginVertical="5dp"/>
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginBottom="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="주변 검색"
+                        android:textSize="23dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:id="@+id/map_repair"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:gravity="center">
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/ic_launcher_background"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="정비소"
+                            android:textSize="18dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:layout_marginVertical="5dp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/map_gas"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:gravity="center">
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/ic_launcher_background"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="주유소"
+                            android:textSize="18dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:layout_marginVertical="5dp"/>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/map_wash"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:gravity="center">
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/ic_launcher_background"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="세차장"
+                            android:textSize="18dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:layout_marginVertical="5dp"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
             </LinearLayout>
 
+            ////////////////////////////////////////////////////////////////////////////
+
+            <LinearLayout
+                android:id="@+id/s_layout_eng"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                style="@style/card"
+                android:layout_marginTop="20dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="20dp"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:layout_marginBottom="10dp">
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/engine_oil"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="엔진오일"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:layout_marginLeft="5dp"/>
+                    </LinearLayout>
+
+                    <ProgressBar
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:id="@+id/engProgs"
+                        android:scaleY="0.5"
+                        android:indeterminate="false"
+                        android:progressDrawable="@drawable/progressbar"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="20dp"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:layout_marginBottom="10dp">
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/filter"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="에어컨필터"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:layout_marginLeft="5dp" />
+                    </LinearLayout>
+
+                    <ProgressBar
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:id="@+id/engDateProgs2"
+                        android:scaleY="0.5"
+                        android:indeterminate="false"
+                        android:progressDrawable="@drawable/progressbar"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:layout_marginBottom="10dp">
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/wheel"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="타이어"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:layout_marginLeft="5dp"/>
+                    </LinearLayout>
+
+                    <ProgressBar
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:id="@+id/engDateProgs3"
+                        android:scaleY="0.5"
+                        android:indeterminate="false"
+                        android:progressDrawable="@drawable/progressbar"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            ///////////////////////////////////////////////////////////////////////////
+
+            <LinearLayout
+                android:id="@+id/layout_eng3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                style="@style/card"
+                android:layout_marginTop="20dp"
+                android:padding="15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:gravity="center">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center">
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:layout_gravity="center"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/engine_oil"/>
+                            <ProgressBar
+                                android:layout_gravity="center"
+                                android:layout_width="110dp"
+                                android:layout_height="110dp"
+                                android:id="@+id/engDateProgs7"
+                                android:indeterminate="false"
+                                android:progressDrawable="@drawable/progressbar"/>
+                        </FrameLayout>
+                    </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="엔진오일"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:layout_marginVertical="5dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:gravity="center">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center">
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="center"
+                                android:gravity="center">
+                                <ImageView
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:src="@drawable/filter"/>
+                            </LinearLayout>
+                            <ProgressBar
+                                android:layout_gravity="center"
+                                android:layout_width="110dp"
+                                android:layout_height="110dp"
+                                android:id="@+id/engDateProgs8"
+                                android:indeterminate="false"
+                                android:progressDrawable="@drawable/progressbar"/>
+                        </FrameLayout>
+                    </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="에어컨필터"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:layout_marginVertical="5dp"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:gravity="center">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center">
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:layout_gravity="center"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/wheel"/>
+                            <ProgressBar
+                                android:layout_gravity="center"
+                                android:layout_width="110dp"
+                                android:layout_height="110dp"
+                                android:id="@+id/engDateProgs9"
+                                android:indeterminate="false"
+                                android:progressDrawable="@drawable/progressbar"/>
+                        </FrameLayout>
+                    </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="타이어"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:layout_marginVertical="5dp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+            ////////////////////////////////////////////////////////////////////////
+
         </LinearLayout>
-        ////////////////////////////////////////////////////////////////////////
-        <LinearLayout
-            android:id="@+id/layout_eng4"
-            android:layout_width="match_parent"
+    </ScrollView>
+    <LinearLayout
+        android:id="@+id/layout_loding"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#90FFFFFF"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="invisible">
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            style="@style/card"
-            android:layout_marginVertical="20dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:gravity="center">
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/ic_launcher_background"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="정비소"
-                    android:textSize="18dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
-                    android:layout_marginVertical="5dp"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:gravity="center">
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/ic_launcher_background"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="주유소"
-                    android:textSize="18dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
-                    android:layout_marginVertical="5dp"/>
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:gravity="center">
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/ic_launcher_background"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="세차장"
-                    android:textSize="18dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
-                    android:layout_marginVertical="5dp"/>
-            </LinearLayout>
-        </LinearLayout>
-
+            android:id="@+id/spin_kit"
+            style="@style/SpinKitView.ThreeBounce"
+            app:SpinKit_Color="@color/black"/>
     </LinearLayout>
-</ScrollView>
+</FrameLayout>

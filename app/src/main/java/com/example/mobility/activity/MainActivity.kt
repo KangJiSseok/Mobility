@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
                             if (MyApplication.checkAuth()) {
                                 MyApplication.email = email
                                 //로그인화면으로 이동
-                                startActivity(Intent(this, RepairInfoActivity::class.java))
+                                startActivity(Intent(this, SimplificationActivity::class.java))
                             } else {
                                 Toast.makeText(
                                     baseContext,
@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity() {
     private fun moveMainpage(user:FirebaseUser?) {
         if(user != null)
         {
-            startActivity(Intent(this, RepairInfoActivity::class.java))
+            startActivity(Intent(this, SimplificationActivity::class.java))
             Toast.makeText(applicationContext, user.email.toString() + "님 환영합니다.", Toast.LENGTH_SHORT).show()
         }
     }

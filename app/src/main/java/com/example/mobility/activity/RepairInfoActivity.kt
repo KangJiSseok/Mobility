@@ -33,25 +33,12 @@ class RepairInfoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRepairInfoBinding.inflate(layoutInflater)
+        shortAnimationDuration = resources.getInteger(android.R.integer.config_longAnimTime)
         setContentView(binding.root)
 
         title = "남은 주행 거리와 기간"
 
-
-        binding.carInfoLayout.setOnClickListener {
-            val intent = Intent(this, CarInfoActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.odoLayout.setOnClickListener {
-            val intent = Intent(this, UpdateOdoActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.neededUpdate.setOnClickListener {
-            val intent = Intent(this, UpdateOdoActivity::class.java)
-            startActivity(intent)
-        }
+        supportActionBar?.setDisplayHomeAsUpEnabled(true);
 
         binding.layoutEng.setOnClickListener {
             val intent = Intent(this, UpdateRepairActivity::class.java)
@@ -68,24 +55,6 @@ class RepairInfoActivity : AppCompatActivity() {
         binding.layoutTire.setOnClickListener {
             val intent = Intent(this, UpdateRepairActivity::class.java)
             intent.putExtra("part", "타이어")
-            startActivity(intent)
-        }
-
-        binding.mapRepair.setOnClickListener {
-            val intent = Intent(this, GoogleMapActivity::class.java)
-            intent.putExtra("part", "car_repair")
-            startActivity(intent)
-        }
-
-        binding.mapGas.setOnClickListener {
-            val intent = Intent(this, GoogleMapActivity::class.java)
-            intent.putExtra("part", "gas_station")
-            startActivity(intent)
-        }
-
-        binding.mapWash.setOnClickListener {
-            val intent = Intent(this, GoogleMapActivity::class.java)
-            intent.putExtra("part", "car_wash")
             startActivity(intent)
         }
 
@@ -109,22 +78,7 @@ class RepairInfoActivity : AppCompatActivity() {
                 }
             }
 
-            // 주행거리 업데이트 확인
-            var lastDate = data.CarInfo["lastDate"].toString()
-            if (diffDate(lastDate) > 14) {
-                binding.neededUpdate.visibility = android.view.View.VISIBLE
-                binding.updateDate.text = "업데이트한지 ${diffDate(lastDate)}일이 지났습니다."
-            }
-            else {
-                binding.neededUpdate.visibility = android.view.View.GONE
-            }
-
-            var car = data.CarInfo["model"].toString()
-            var year = data.CarInfo["year"].toString()
             var odo = data.CarInfo["odo"].toString()
-            binding.totalOdo.text = "${addCommasToNumber(odo.toInt())} km"
-
-            binding.carName.text = "${year}년식 ${car}"
 
             // 엔진오일
             var engOdo = data.RepairInfo["engineOdo"].toString()
@@ -156,12 +110,6 @@ class RepairInfoActivity : AppCompatActivity() {
                     }
                 })
         }
-    }
-
-    // 메뉴 추가
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main_menu, menu)
-        return super.onCreateOptionsMenu(menu)
     }
     /*
     * 교체 주기 계산 함수
@@ -294,10 +242,7 @@ class RepairInfoActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.logout -> {
-                FirebaseAuth.getInstance().signOut()
-                finish()
-            }
+            android.R.id.home -> finish()
         }
         return super.onOptionsItemSelected(item)
     }
