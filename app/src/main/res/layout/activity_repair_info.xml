@@ -294,7 +294,7 @@
         android:id="@+id/layout_loding"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#DFFFFFFF"
+        android:background="#90FFFFFF"
         android:orientation="vertical"
         android:gravity="center"
         android:visibility="visible">
@@ -304,12 +304,6 @@
             android:id="@+id/spin_kit"
             style="@style/SpinKitView.ThreeBounce"
             app:SpinKit_Color="@color/black"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Loding..."
-            android:textSize="30dp"
-            android:textStyle="bold"/>
     </LinearLayout>
 
 </FrameLayout>

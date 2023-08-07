@@ -125,7 +125,7 @@ class UpdateOdoActivity : AppCompatActivity() {
         val alarmDate = "$date 18:00:00"
         val sf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
         calender.time = sf.parse(alarmDate)
-        calender.add(Calendar.DATE, 15)
+        calender.add(Calendar.DATE, 14)
 
         alarmManager.set(AlarmManager.RTC, calender.timeInMillis, pendingIntent);
     }

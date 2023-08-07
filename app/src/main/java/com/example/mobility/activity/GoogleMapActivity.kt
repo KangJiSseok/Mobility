@@ -9,6 +9,7 @@ import android.location.Geocoder
 import android.location.Location
 import android.location.LocationManager
 import android.os.Bundle
+import android.os.Handler
 import android.os.Looper
 import android.provider.Settings
 import android.util.Log
@@ -16,6 +17,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -23,6 +25,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.OnRequestPermissionsResultCallback
 import androidx.core.content.ContextCompat
 import com.example.mobility.R
+import com.github.ybq.android.spinkit.SpinKitView
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
@@ -76,6 +79,7 @@ class GoogleMapActivity() : AppCompatActivity(), OnMapReadyCallback,
             : View? = null
 
     // (참고로 Toast에서는 Context가 필요했습니다.)
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         title = "주변 검색"
@@ -103,8 +107,11 @@ class GoogleMapActivity() : AppCompatActivity(), OnMapReadyCallback,
 
 
         val button: Button = findViewById<View>(R.id.button) as Button
+        val loading: LinearLayout = findViewById<View>(R.id.loading) as LinearLayout
         button.setOnClickListener {
+            loading.visibility = View.VISIBLE
             doSomethingWithCenterLatLng()
+            Handler().postDelayed({loading.visibility = View.INVISIBLE},3000L)
         }
 
     }
