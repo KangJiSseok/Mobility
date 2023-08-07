@@ -51,18 +51,16 @@ class CarInfoActivity : AppCompatActivity() {
 
             binding.car.setText(data.CarInfo["model"])
             binding.year.setText(data.CarInfo["year"])
-            binding.odo.setText(data.CarInfo["odo"])
         }
 
         // 차종, 연식, 주행 거리를 입력받음
         binding.submit.setOnClickListener {
             val car = binding.car.text.toString().trim() // 차종
             val year = binding.year.text.toString().trim() // 연식
-            val odo = binding.odo.text.toString().trim() // 주행거리
             val today: LocalDate = LocalDate.now()
 
             // 입력 유효성 검사
-            if (car.isNullOrEmpty() || year.isNullOrEmpty() || odo.isNullOrEmpty()) {
+            if (car.isNullOrEmpty() || year.isNullOrEmpty() ) {
                 var loginfailalert = AlertDialog.Builder(this)
                 loginfailalert.setMessage("모든 입력란을 채워 주세요.")
                 loginfailalert.setPositiveButton("확인", null)
@@ -73,7 +71,6 @@ class CarInfoActivity : AppCompatActivity() {
             // 차량 정보 등록 (서버)
             data.CarInfo["model"] = binding.car.text.toString()
             data.CarInfo["year"] = binding.year.text.toString()
-            data.CarInfo["odo"] = binding.odo.text.toString()
             data.CarInfo["lastDate"] = today.toString()
             db.collection(MyApplication.auth.currentUser!!.uid).document("CarInfo").update(data.CarInfo as Map<String, Any>)
                 .addOnCompleteListener{

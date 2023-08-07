@@ -59,6 +59,7 @@ import java.util.Locale
 class GoogleMapActivity() : AppCompatActivity(), OnMapReadyCallback,
     OnRequestPermissionsResultCallback,PlacesListener {
     private var part: String? = null
+    private var name: String? = null
     private var mMap: GoogleMap? = null
 
     // 카메라 위치 저장
@@ -67,7 +68,6 @@ class GoogleMapActivity() : AppCompatActivity(), OnMapReadyCallback,
     private var currentMarker: Marker? = null
     var needRequest = false
     var previous_marker: MutableList<Marker>? = null
-    var select_marker:Marker? = null
 
     private var firstLocation : Boolean = true
 
@@ -91,13 +91,15 @@ class GoogleMapActivity() : AppCompatActivity(), OnMapReadyCallback,
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        title = "주변 검색"
 
         // Intent 에서 데이터 가져오기
         part = intent.getStringExtra("part")
-
-
-
+        when(part){
+            "car_repair" -> name = "정비소"
+            "gas_station" -> name = "주유소"
+            "car_wash" -> name = "세차장"
+        }
+        title = "주변 $name 검색"
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true);
         window.setFlags(
@@ -474,7 +476,7 @@ class GoogleMapActivity() : AppCompatActivity(), OnMapReadyCallback,
     override fun onPlacesFailure(e: PlacesException?) {
         if (e.toString() == "noman.googleplaces.PlacesException: ZERO_RESULTS") {
             Snackbar.make(
-                mLayout!!, "주변에 없습니다.",
+                mLayout!!, "주변에 ${name}이(가) 없습니다.",
                 Snackbar.LENGTH_SHORT
             ).show()
             runOnUiThread {
@@ -524,8 +526,8 @@ class GoogleMapActivity() : AppCompatActivity(), OnMapReadyCallback,
             .listener(this@GoogleMapActivity)
             .key("AIzaSyDFUX-x4bgnuESK-ZMkcgOrszkqty801To")
             .latlng(location.latitude, location.longitude) //현재 위치
-            .radius(1000) //1000 미터 내에서 검색
-            .type(part) //정비소
+            .radius(600) //1000 미터 내에서 검색
+            .type(part) //키워드
             .build()
             .execute()
     }
