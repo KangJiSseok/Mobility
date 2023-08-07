@@ -44,6 +44,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
@@ -208,6 +209,9 @@ class GoogleMapActivity() : AppCompatActivity(), OnMapReadyCallback,
                 // centerLatLng를 사용하여 원하는 작업 수행
                 Log.d(TAG, "화면 정가운데 좌표 - 위도: $latitude, 경도: $longitude")
                 showPlaceInformation(LatLng(latitude, longitude))
+                val cameraUpdate = CameraUpdateFactory.newLatLngZoom(LatLng(latitude, longitude),15f)
+                mMap!!.animateCamera(cameraUpdate)
+                mMap!!.moveCamera(cameraUpdate)
             }
         }
     }
@@ -329,7 +333,8 @@ class GoogleMapActivity() : AppCompatActivity(), OnMapReadyCallback,
         markerOptions.snippet(markerSnippet)
         markerOptions.draggable(true)
         currentMarker = mMap!!.addMarker(markerOptions)
-        val cameraUpdate = CameraUpdateFactory.newLatLng(currentLatLng)
+        val cameraUpdate = CameraUpdateFactory.newLatLngZoom(currentLatLng,15f)
+        mMap!!.animateCamera(cameraUpdate)
         mMap!!.moveCamera(cameraUpdate)
     }
 
