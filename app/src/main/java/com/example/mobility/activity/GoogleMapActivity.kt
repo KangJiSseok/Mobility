@@ -1,17 +1,17 @@
 package com.example.mobility.activity
 
 import android.Manifest
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.drawable.BitmapDrawable
 import android.location.Address
 import android.location.Geocoder
 import android.location.Location
 import android.location.LocationManager
 import android.os.Bundle
-import android.os.Handler
 import android.os.Looper
 import android.provider.Settings
 import android.util.Log
@@ -20,15 +20,19 @@ import android.view.View
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import android.widget.Button
-import android.widget.LinearLayout
+import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.OnRequestPermissionsResultCallback
 import androidx.core.content.ContextCompat
+import androidx.core.view.drawToBitmap
 import com.example.mobility.R
 import com.github.ybq.android.spinkit.SpinKitView
+import com.github.ybq.android.spinkit.sprite.Sprite
+import com.github.ybq.android.spinkit.style.DoubleBounce
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
@@ -49,7 +53,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import noman.googleplaces.NRPlaces
 import noman.googleplaces.Place
-import noman.googleplaces.PlaceType
 import noman.googleplaces.PlacesException
 import noman.googleplaces.PlacesListener
 import java.io.IOException
@@ -106,8 +109,8 @@ class GoogleMapActivity() : AppCompatActivity(), OnMapReadyCallback,
             WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
             WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
         )
-        setContentView(R.layout.activity_google_map)
-        mLayout = findViewById<View>(R.id.layout_google_map)
+        setContentView(com.example.mobility.R.layout.activity_google_map)
+        mLayout = findViewById<View>(com.example.mobility.R.id.layout_google_map)
         locationRequest = LocationRequest()
             .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
             .setInterval(UPDATE_INTERVAL_MS.toLong())
@@ -118,14 +121,13 @@ class GoogleMapActivity() : AppCompatActivity(), OnMapReadyCallback,
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         val mapFragment = supportFragmentManager
-            .findFragmentById(R.id.map) as SupportMapFragment?
+            .findFragmentById(com.example.mobility.R.id.map) as SupportMapFragment?
         mapFragment!!.getMapAsync(this)
 
         previous_marker = ArrayList()
 
-
-        val button: Button = findViewById<View>(R.id.button) as Button
-        loadingView = findViewById(R.id.loading)
+        val button: Button = findViewById<View>(com.example.mobility.R.id.fab) as Button
+        loadingView = findViewById(com.example.mobility.R.id.loading)
 
         button.setOnClickListener {
             doSomethingWithCenterLatLng()
@@ -478,7 +480,10 @@ class GoogleMapActivity() : AppCompatActivity(), OnMapReadyCallback,
             Snackbar.make(
                 mLayout!!, "주변에 ${name}이(가) 없습니다.",
                 Snackbar.LENGTH_SHORT
-            ).show()
+            ).apply {
+                this.view.findViewById<TextView>(com.google.android.material.R.id.snackbar_text).textAlignment = View.TEXT_ALIGNMENT_CENTER
+            }
+                .show()
             runOnUiThread {
                 loadingView.startAnimation(AnimationUtils.loadAnimation(applicationContext,R.anim.fade_out))
             }
