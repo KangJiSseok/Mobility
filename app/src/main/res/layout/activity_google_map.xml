@@ -44,6 +44,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center|bottom"
         android:layout_marginBottom="20dp"
-        android:text="이 지역에서 재탐색"/>
+        android:text="이 지역에서 재탐색"
+        android:drawableLeft="@drawable/baseline_autorenew_24"
+        android:backgroundTint="@color/white"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
