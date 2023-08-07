@@ -1,5 +1,7 @@
 package com.example.mobility.activity
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -26,12 +28,16 @@ class RepairInfoActivity : AppCompatActivity() {
 
     var data = ItemData()
     lateinit var binding: ActivityRepairInfoBinding
+
+    private var shortAnimationDuration: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRepairInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         title = "남은 주행 거리와 기간"
+
+        shortAnimationDuration = resources.getInteger(android.R.integer.config_longAnimTime)
 
         //구글맵으로 이동 추가
         binding.btnGoogleMap.setOnClickListener {
@@ -129,7 +135,14 @@ class RepairInfoActivity : AppCompatActivity() {
             val tireDateRepair = 1095 // 3년
             this.dispInfo("타이어", odo, tireOdo, tireDate, tireOdoRepair, tireDateRepair)
 
-            binding.layoutLoding.visibility = View.INVISIBLE
+            binding.layoutLoding.animate()
+                .alpha(0f)
+                .setDuration(shortAnimationDuration.toLong())
+                .setListener(object : AnimatorListenerAdapter() {
+                    override fun onAnimationEnd(animation: Animator) {
+                        binding.layoutLoding.visibility = View.GONE
+                    }
+                })
         }
     }
 

@@ -23,15 +23,20 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:id="@+id/loading"
-            android:background="#CBFFFFFF"
+            android:background="#FFFFFF"
             android:visibility="invisible">
             <com.github.ybq.android.spinkit.SpinKitView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/SpinKitView.Pulse"
-                app:SpinKit_Color="#353535"
-                android:visibility="visible"/>
+                app:SpinKit_Color="#000000"/>
         </LinearLayout>
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            style="@style/SpinKitView.Pulse"
+            app:SpinKit_Color="#000000"/>
     </FrameLayout>
 
     <Button

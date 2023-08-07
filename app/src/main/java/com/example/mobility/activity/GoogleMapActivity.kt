@@ -1,6 +1,8 @@
 package com.example.mobility.activity
 
 import android.Manifest
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -16,6 +18,7 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
+import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.Toast
@@ -41,6 +44,9 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import noman.googleplaces.NRPlaces
 import noman.googleplaces.Place
 import noman.googleplaces.PlaceType
@@ -78,6 +84,8 @@ class GoogleMapActivity() : AppCompatActivity(), OnMapReadyCallback,
     private var mLayout // Snackbar 사용하기 위해서는 View가 필요합니다.
             : View? = null
 
+    private lateinit var loadingView: View
+
     // (참고로 Toast에서는 Context가 필요했습니다.)
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -107,21 +115,19 @@ class GoogleMapActivity() : AppCompatActivity(), OnMapReadyCallback,
 
 
         val button: Button = findViewById<View>(R.id.button) as Button
-        val loading: LinearLayout = findViewById<View>(R.id.loading) as LinearLayout
-        button.setOnClickListener {
-            loading.visibility = View.VISIBLE
-            doSomethingWithCenterLatLng()
-            Handler().postDelayed({loading.visibility = View.INVISIBLE},3000L)
-        }
+        loadingView = findViewById(R.id.loading)
 
+        button.setOnClickListener {
+            doSomethingWithCenterLatLng()
+        }
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
         Log.d(TAG, "onMapReady :")
         mMap = googleMap
 
+        loadingView.visibility = View.VISIBLE
         //런타임 퍼미션 요청 대화상자나 GPS 활성 요청 대화상자 보이기전에
-
         //지도의 초기위치를 서울로 이동
         setDefaultLocation()
 
@@ -175,21 +181,22 @@ class GoogleMapActivity() : AppCompatActivity(), OnMapReadyCallback,
         mMap!!.uiSettings.isMyLocationButtonEnabled = true
         mMap!!.uiSettings.isZoomControlsEnabled =true
 
-
         mMap!!.setOnCameraMoveListener {
             cameraPosition = mMap!!.cameraPosition.target
         }
-
-
     }
 
     fun doSomethingWithCenterLatLng() {
-        if (cameraPosition != null) {
-            val latitude = cameraPosition!!.latitude
-            val longitude = cameraPosition!!.longitude
-            // centerLatLng를 사용하여 원하는 작업 수행
-            Log.d(TAG, "화면 정가운데 좌표 - 위도: $latitude, 경도: $longitude")
-            showPlaceInformation(LatLng(latitude, longitude))
+        CoroutineScope(Dispatchers.Main).launch {
+//            loadingView.visibility = View.VISIBLE
+
+            if (cameraPosition != null) {
+                val latitude = cameraPosition!!.latitude
+                val longitude = cameraPosition!!.longitude
+                // centerLatLng를 사용하여 원하는 작업 수행
+                Log.d(TAG, "화면 정가운데 좌표 - 위도: $latitude, 경도: $longitude")
+                showPlaceInformation(LatLng(latitude, longitude))
+            }
         }
     }
 
@@ -284,7 +291,7 @@ class GoogleMapActivity() : AppCompatActivity(), OnMapReadyCallback,
             Toast.makeText(this, "잘못된 GPS 좌표", Toast.LENGTH_LONG).show()
             return "잘못된 GPS 좌표"
         }
-        if (addresses == null || addresses.size == 0) {
+        if (addresses.isNullOrEmpty()) {
             Toast.makeText(this, "주소 미발견", Toast.LENGTH_LONG).show()
             return "주소 미발견"
         } else {
@@ -343,11 +350,8 @@ class GoogleMapActivity() : AppCompatActivity(), OnMapReadyCallback,
             this,
             Manifest.permission.ACCESS_COARSE_LOCATION
         )
-        return if (hasFineLocationPermission == PackageManager.PERMISSION_GRANTED &&
+        return hasFineLocationPermission == PackageManager.PERMISSION_GRANTED &&
             hasCoarseLocationPermission == PackageManager.PERMISSION_GRANTED
-        ) {
-            true
-        } else false
     }
 
     /*
@@ -460,12 +464,23 @@ class GoogleMapActivity() : AppCompatActivity(), OnMapReadyCallback,
     }
 
     override fun onPlacesFailure(e: PlacesException?) {
+        if (e.toString() == "noman.googleplaces.PlacesException: ZERO_RESULTS") {
+            Snackbar.make(
+                mLayout!!, "주변에 없습니다.",
+                Snackbar.LENGTH_SHORT
+            ).show()
+            runOnUiThread {
+                loadingView.startAnimation(AnimationUtils.loadAnimation(applicationContext,R.anim.fade_out))
+            }
+        }
     }
 
     override fun onPlacesStart() {
+        Log.d("place","start")
     }
 
     override fun onPlacesSuccess(places: List<Place>) {
+
         runOnUiThread {
             for (place in places) {
                 val latLng = LatLng(
@@ -486,10 +501,12 @@ class GoogleMapActivity() : AppCompatActivity(), OnMapReadyCallback,
             previous_marker!!.clear()
             previous_marker!!.addAll(hashSet)
         }
+
     }
 
-
     override fun onPlacesFinished() {
+        Log.d("place","finish")
+        loadingView.startAnimation(AnimationUtils.loadAnimation(applicationContext,R.anim.fade_out))
     }
 
     fun showPlaceInformation(location: LatLng) {
