@@ -58,6 +58,7 @@ import java.util.Locale
 
 class GoogleMapActivity() : AppCompatActivity(), OnMapReadyCallback,
     OnRequestPermissionsResultCallback,PlacesListener {
+    private var part: String? = null
     private var mMap: GoogleMap? = null
 
     // 카메라 위치 저장
@@ -91,6 +92,13 @@ class GoogleMapActivity() : AppCompatActivity(), OnMapReadyCallback,
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         title = "주변 검색"
+
+        // Intent 에서 데이터 가져오기
+        part = intent.getStringExtra("part")
+
+
+
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true);
         window.setFlags(
             WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
@@ -516,8 +524,8 @@ class GoogleMapActivity() : AppCompatActivity(), OnMapReadyCallback,
             .listener(this@GoogleMapActivity)
             .key("AIzaSyDFUX-x4bgnuESK-ZMkcgOrszkqty801To")
             .latlng(location.latitude, location.longitude) //현재 위치
-            .radius(500) //500 미터 내에서 검색
-            .type(PlaceType.CAR_REPAIR) //정비소
+            .radius(1000) //1000 미터 내에서 검색
+            .type(part) //정비소
             .build()
             .execute()
     }
