@@ -113,12 +113,19 @@ class UpdateOdoActivity : AppCompatActivity() {
     }
 
     private fun setNotification(date: String){
-        val intent = Intent(this, NotificationReceiver::class.java)
+//        val intent = Intent(this, NotificationReceiver::class.java)
+        val intent2 = Intent(this, NotificationReceiver::class.java)
 
-        val pendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            PendingIntent.getBroadcast(this,111,intent,PendingIntent.FLAG_MUTABLE )
+//        val pendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+//            PendingIntent.getBroadcast(this,111,intent,PendingIntent.FLAG_MUTABLE )
+//        } else {
+//            PendingIntent.getBroadcast(this,111,intent,PendingIntent.FLAG_UPDATE_CURRENT )
+//        }
+
+        val pendingIntent2 = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            PendingIntent.getBroadcast(this,222,intent2,PendingIntent.FLAG_MUTABLE )
         } else {
-            PendingIntent.getBroadcast(this,111,intent,PendingIntent.FLAG_UPDATE_CURRENT )
+            PendingIntent.getBroadcast(this,222,intent2,PendingIntent.FLAG_UPDATE_CURRENT )
         }
 
         val calender = Calendar.getInstance()
@@ -127,6 +134,7 @@ class UpdateOdoActivity : AppCompatActivity() {
         calender.time = sf.parse(alarmDate)
         calender.add(Calendar.DATE, 14)
 
-        alarmManager.set(AlarmManager.RTC, calender.timeInMillis, pendingIntent);
+//        alarmManager.set(AlarmManager.RTC, calender.timeInMillis, pendingIntent); //한번만
+        alarmManager.setInexactRepeating(AlarmManager.RTC, calender.timeInMillis, 1000*60*60*24*3, pendingIntent2) // 14일뒤, 3일 반복
     }
 }
