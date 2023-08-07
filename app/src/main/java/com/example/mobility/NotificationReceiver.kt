@@ -52,7 +52,7 @@ class NotificationReceiver : BroadcastReceiver() {
         }
 
         //알림창 제목
-        builder!!.setContentTitle("test") //회의명노출
+        builder!!.setContentTitle("주행거리를 업데이트 해주세요!!") //회의명노출
 
         //알림창 아이콘
         builder!!.setSmallIcon(R.drawable.alert_dark_frame)
