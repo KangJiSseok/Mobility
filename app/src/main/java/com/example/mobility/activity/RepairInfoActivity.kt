@@ -33,11 +33,6 @@ class RepairInfoActivity : AppCompatActivity() {
 
         title = "남은 주행 거리와 기간"
 
-        //구글맵으로 이동 추가
-        binding.btnGoogleMap.setOnClickListener {
-            val intent = Intent(this, GoogleMapActivity::class.java)
-            startActivity(intent)
-        }
 
         binding.carInfoLayout.setOnClickListener {
             val intent = Intent(this, CarInfoActivity::class.java)
@@ -72,7 +67,26 @@ class RepairInfoActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.mapRepair.setOnClickListener {
+            val intent = Intent(this, GoogleMapActivity::class.java)
+            intent.putExtra("part", "car_repair")
+            startActivity(intent)
+        }
+
+        binding.mapGas.setOnClickListener {
+            val intent = Intent(this, GoogleMapActivity::class.java)
+            intent.putExtra("part", "gas_station")
+            startActivity(intent)
+        }
+
+        binding.mapWash.setOnClickListener {
+            val intent = Intent(this, GoogleMapActivity::class.java)
+            intent.putExtra("part", "car_wash")
+            startActivity(intent)
+        }
+
     }
+
 
     // 화면이 다시 시작할 때마다 업데이트
     override fun onResume() {
