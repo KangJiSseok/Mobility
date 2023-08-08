@@ -20,28 +20,27 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/car_name"
+                    android:text="Loading..."
                     android:textSize="34dp"
                     android:textStyle="bold"
                     android:textColor="@color/black"
                     android:layout_marginBottom="15dp"
                     android:layout_marginTop="25dp"
-                    android:layout_marginLeft="35dp"
-                    android:layout_marginRight="10dp"
-                    android:elevation="20dp"/>
+                    android:layout_marginHorizontal="35dp" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
+                android:layout_marginHorizontal="35dp"
                 android:layout_marginBottom="5dp"
-                android:id="@+id/odo_layout"
                 android:orientation="horizontal">
                 <TextView
+                    android:id="@+id/odo_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="누적 주행 거리  > "
-                    android:textSize="18dp"/>
+                    android:textSize="18dp" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -59,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="20dp"
-                android:background="@drawable/radius"
+                android:background="@drawable/radius_view"
                 android:layout_margin="20dp"
                 android:visibility="gone"
                 android:elevation="20dp">
@@ -115,7 +114,9 @@
                         android:id="@+id/all"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="전체보기 >"/>
+                        android:padding="8dp"
+                        android:text="전체보기  >"
+                        android:background="@drawable/radius_view"/>
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/layout_eng2"
@@ -249,7 +250,9 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical"
                         android:layout_weight="1"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:background="@drawable/radius_view">
                         <ImageView
                             android:layout_width="50dp"
                             android:layout_height="50dp"
@@ -270,7 +273,9 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical"
                         android:layout_weight="1"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:background="@drawable/radius_view">
                         <ImageView
                             android:layout_width="50dp"
                             android:layout_height="50dp"
@@ -292,7 +297,9 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical"
                         android:layout_weight="1"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:background="@drawable/radius_view">
                         <ImageView
                             android:layout_width="50dp"
                             android:layout_height="50dp"
@@ -568,7 +575,7 @@
         android:id="@+id/layout_loding"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#90FFFFFF"
+        android:background="#BFFFFFFF"
         android:orientation="vertical"
         android:gravity="center"
         android:visibility="invisible">

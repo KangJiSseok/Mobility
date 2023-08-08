@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:padding="20dp"
-        android:background="@drawable/radius"
+        android:background="@drawable/radius_view"
         android:gravity="center"
         android:orientation="vertical"
         android:radius="20dp">

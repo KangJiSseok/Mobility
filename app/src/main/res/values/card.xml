@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="card">
-        <item name="android:background">@drawable/radius</item>
+        <item name="android:background">@drawable/radius_view</item>
+        <item name="backgroundTint">#ffffff</item>
         <item name="android:padding">20dp</item>
         <item name="android:layout_marginLeft">25dp</item>
         <item name="android:layout_marginRight">25dp</item>

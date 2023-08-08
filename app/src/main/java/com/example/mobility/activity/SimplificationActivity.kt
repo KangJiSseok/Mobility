@@ -46,6 +46,11 @@ class SimplificationActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.odoLayout.setOnClickListener {
+            val intent = Intent(this, UpdateOdoActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.neededUpdate.setOnClickListener {
             val intent = Intent(this, UpdateOdoActivity::class.java)
             startActivity(intent)

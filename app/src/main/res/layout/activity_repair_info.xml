@@ -21,7 +21,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 style="@style/card"
-                android:layout_marginTop="25dp">
+                android:layout_marginTop="25dp"
+                android:background="@drawable/radius_view">
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -84,7 +85,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 style="@style/card"
-                android:layout_marginTop="25dp">
+                android:layout_marginTop="25dp"
+                android:background="@drawable/radius_view">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -148,7 +150,8 @@
                 android:orientation="vertical"
                 style="@style/card"
                 android:layout_marginTop="25dp"
-                android:layout_marginBottom="25dp">
+                android:layout_marginBottom="25dp"
+                android:background="@drawable/radius_view">
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -206,14 +209,15 @@
 
         </LinearLayout>
     </ScrollView>
+
     <LinearLayout
         android:id="@+id/layout_loding"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#90FFFFFF"
+        android:background="#EEFFFFFF"
         android:orientation="vertical"
         android:gravity="center"
-        android:visibility="visible">
+        android:visibility="invisible">
         <com.github.ybq.android.spinkit.SpinKitView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -221,4 +225,5 @@
             style="@style/SpinKitView.ThreeBounce"
             app:SpinKit_Color="@color/black"/>
     </LinearLayout>
+
 </FrameLayout>
