@@ -49,8 +49,10 @@ class CarInfoActivity : AppCompatActivity() {
                 }
             }
 
-            binding.car.setText(data.CarInfo["model"])
-            binding.year.setText(data.CarInfo["year"])
+            if (data.CarInfo["model"] != "0" && data.CarInfo["year"] != "0") {
+                binding.car.setText(data.CarInfo["model"])
+                binding.year.setText(data.CarInfo["year"])
+            }
         }
 
         // 차종, 연식, 주행 거리를 입력받음
