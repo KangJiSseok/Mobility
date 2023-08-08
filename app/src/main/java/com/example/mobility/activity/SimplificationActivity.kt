@@ -3,17 +3,15 @@ package com.example.mobility.activity
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.content.Intent
-import android.content.res.ColorStateList
-import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ProgressBar
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.mobility.MyApplication
 import com.example.mobility.R
-import com.example.mobility.databinding.ActivityRepairInfoBinding
 import com.example.mobility.databinding.ActivitySimplificationBinding
 import com.example.mobility.model.ItemData
 import com.google.firebase.auth.FirebaseAuth
@@ -25,11 +23,13 @@ import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.Calendar
 
+
 class SimplificationActivity : AppCompatActivity() {
 
     var data = ItemData()
     lateinit var binding: ActivitySimplificationBinding
     private var shortAnimationDuration: Int = 0
+    private var backPressedtime: Long = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySimplificationBinding.inflate(layoutInflater)
@@ -191,7 +191,14 @@ class SimplificationActivity : AppCompatActivity() {
     /*
     * 화면 출력 함수
     */
-    private fun CoroutineScope.dispInfo(text: String, odo: String, cOdo: String, cDate: String, cOdoRepair: Int, cDateRepair: Int, ) {
+    private fun CoroutineScope.dispInfo(
+        text: String,
+        odo: String,
+        cOdo: String,
+        cDate: String,
+        cOdoRepair: Int,
+        cDateRepair: Int
+    ) {
 
         val (cRepairNeeded, cDiffOdo, cDiffDate) = calculate(odo, cOdo, cDate, cOdoRepair, cDateRepair)
 
@@ -259,5 +266,17 @@ class SimplificationActivity : AppCompatActivity() {
         // 교체한지 며칠 지났는지 일수로 계산
         var diffDate = (today.time.time - dateValue.time) / (60 * 60 * 24 * 1000)
         return diffDate.toInt()
+    }
+
+    override fun onBackPressed() {
+        if (System.currentTimeMillis() - backPressedtime >= 1000) {
+            backPressedtime = System.currentTimeMillis()
+            Toast.makeText(applicationContext, "뒤로가기를 한 번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT)
+                .show()
+        } else if (System.currentTimeMillis() - backPressedtime < 1000) { // 뒤로 가기 한번 더 눌렀을때의 시간간격 텀이 1초
+            finishAffinity()
+            System.runFinalization()
+            System.exit(0)
+        }
     }
 }
