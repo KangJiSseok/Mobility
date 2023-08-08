@@ -211,7 +211,7 @@ class GoogleMapActivity() : AppCompatActivity(), OnMapReadyCallback,
                 showPlaceInformation(LatLng(latitude, longitude))
                 val cameraUpdate = CameraUpdateFactory.newLatLngZoom(LatLng(latitude, longitude),15f)
                 mMap!!.animateCamera(cameraUpdate)
-                mMap!!.moveCamera(cameraUpdate)
+
             }
         }
     }
