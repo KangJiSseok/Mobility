@@ -1,6 +1,5 @@
 package com.example.mobility
 
-import android.R
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -55,7 +54,7 @@ class NotificationReceiver : BroadcastReceiver() {
         builder!!.setContentTitle("주행거리를 업데이트 해주세요!!") //회의명노출
 
         //알림창 아이콘
-        builder!!.setSmallIcon(R.drawable.alert_dark_frame)
+        builder!!.setSmallIcon(R.mipmap.ic_launcher)
 
         //알림창 터치시 자동 삭제
         builder!!.setAutoCancel(true)

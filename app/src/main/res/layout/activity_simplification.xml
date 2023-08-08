@@ -256,7 +256,7 @@
                         <ImageView
                             android:layout_width="50dp"
                             android:layout_height="50dp"
-                            android:src="@drawable/ic_launcher_background"/>
+                            android:src="@drawable/car_repair"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -279,7 +279,7 @@
                         <ImageView
                             android:layout_width="50dp"
                             android:layout_height="50dp"
-                            android:src="@drawable/ic_launcher_background"/>
+                            android:src="@drawable/gas_station"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -303,7 +303,7 @@
                         <ImageView
                             android:layout_width="50dp"
                             android:layout_height="50dp"
-                            android:src="@drawable/ic_launcher_background"/>
+                            android:src="@drawable/wash"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
