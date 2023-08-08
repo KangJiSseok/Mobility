@@ -49,7 +49,7 @@ class CarInfoActivity : AppCompatActivity() {
                 }
             }
 
-            if (data.CarInfo["model"] != "0" && data.CarInfo["year"] != "0") {
+            if (data.CarInfo["model"] != "" && data.CarInfo["year"] != "") {
                 binding.car.setText(data.CarInfo["model"])
                 binding.year.setText(data.CarInfo["year"])
             }

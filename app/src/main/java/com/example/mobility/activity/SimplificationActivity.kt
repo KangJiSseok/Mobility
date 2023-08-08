@@ -106,8 +106,10 @@ class SimplificationActivity : AppCompatActivity() {
             var odo = data.CarInfo["odo"].toString()
             binding.totalOdo.text = "${addCommasToNumber(odo.toInt())} km"
 
-            if (year != "0" && car != "0")
+            if (year != "" && car != "")
                 binding.carName.text = "${year}년식 ${car}"
+            else
+                binding.carName.text = "차량을 등록해주세요"
 
             // 엔진오일
             var engOdo = data.RepairInfo["engineOdo"].toString()
