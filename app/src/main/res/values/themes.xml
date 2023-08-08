@@ -3,6 +3,7 @@
     <style name="Base.Theme.Mobility" parent="Theme.Material3.Light">
         <!-- Customize your light theme here. -->
          <item name="colorPrimary">#00E676</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
 
     <style name="Theme.Mobility" parent="Base.Theme.Mobility" />
