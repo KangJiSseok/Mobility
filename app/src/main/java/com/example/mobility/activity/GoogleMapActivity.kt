@@ -173,7 +173,7 @@ class GoogleMapActivity() : AppCompatActivity(), OnMapReadyCallback,
 
                 // 3-2. 요청을 진행하기 전에 사용자가에게 퍼미션이 필요한 이유를 설명해줄 필요가 있습니다.
                 Snackbar.make(
-                    mLayout!!, "이 앱을 실행하려면 위치 접근 권한이 필요합니다.",
+                    mLayout!!, "이 기능을 사용하려면 위치 접근 권한이 필요합니다.",
                     Snackbar.LENGTH_INDEFINITE
                 )
                     .setAction("확인") { // 3-3. 사용자게에 퍼미션 요청을 합니다. 요청 결과는 onRequestPermissionResult에서 수신됩니다.
