@@ -36,6 +36,11 @@ class SimplificationActivity : AppCompatActivity() {
         shortAnimationDuration = resources.getInteger(android.R.integer.config_longAnimTime)
         setContentView(binding.root)
 
+
+        binding.btnLogout.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            finish()
+        }
         binding.carName.setOnClickListener {
             val intent = Intent(this, CarInfoActivity::class.java)
             startActivity(intent)

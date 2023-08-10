@@ -192,6 +192,8 @@ class GoogleMapActivity() : AppCompatActivity(), OnMapReadyCallback,
             }
         }
         mMap!!.uiSettings.isMyLocationButtonEnabled = true
+
+
         mMap!!.uiSettings.isZoomControlsEnabled =true
 
         mMap!!.setOnCameraMoveListener {
@@ -308,8 +310,7 @@ class GoogleMapActivity() : AppCompatActivity(), OnMapReadyCallback,
             return "잘못된 GPS 좌표"
         }
         if (addresses.isNullOrEmpty()) {
-            Toast.makeText(this, "주소 미발견", Toast.LENGTH_LONG).show()
-            return "주소 미발견"
+            return "상세 주소 미발견"
         } else {
             val address = addresses[0]
             return address.getAddressLine(0).toString()
