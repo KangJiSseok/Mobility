@@ -21,19 +21,13 @@
                 android:layout_marginTop="25dp"
                 android:layout_marginHorizontal="35dp">
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:id="@+id/car_name"
                     android:text="Loading..."
                     android:textSize="34dp"
                     android:textStyle="bold"
                     android:textColor="@color/black" />
-                <CheckBox
-                    android:id="@+id/alarmCheck"
-                    android:layout_gravity="center"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -326,15 +320,34 @@
 
             </LinearLayout>
 
-            <ImageButton
-                android:id="@+id/btn_logout"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/logout"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 style="@style/card"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="30dp"
-                android:layout_gravity="right"/>
+                android:layout_marginBottom="30dp">
+                <LinearLayout
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:gravity="center">
+                    <CheckBox
+                        android:id="@+id/alarmCheck"
+                        android:layout_gravity="center"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:button="@null"
+                        android:background="@drawable/alarm_checkbox"/>
+                </LinearLayout>
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+                <ImageButton
+                    android:id="@+id/btn_logout"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/logout"
+                    android:backgroundTint="#FFFFFFFF"/>
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
