@@ -2,7 +2,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#f5f6f7">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -10,23 +11,29 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#f5f6f7">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginHorizontal="35dp">
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:id="@+id/car_name"
                     android:text="Loading..."
                     android:textSize="34dp"
                     android:textStyle="bold"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="15dp"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginHorizontal="35dp" />
+                    android:textColor="@color/black" />
+                <CheckBox
+                    android:id="@+id/alarmCheck"
+                    android:layout_gravity="center"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -224,7 +231,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 style="@style/card"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="30dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -318,123 +326,6 @@
 
             </LinearLayout>
 
-            ////////////////////////////////////////////////////////////////////////////
-
-            <LinearLayout
-                android:id="@+id/s_layout_eng"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                style="@style/card"
-                android:layout_marginTop="20dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginBottom="20dp"
-                    android:layout_weight="1">
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center"
-                        android:layout_marginBottom="10dp">
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:src="@drawable/engine_oil"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="엔진오일"
-                            android:textSize="20dp"
-                            android:textStyle="bold"
-                            android:textColor="@color/black"
-                            android:layout_marginLeft="5dp"/>
-                    </LinearLayout>
-
-                    <ProgressBar
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:id="@+id/engProgs"
-                        android:scaleY="0.5"
-                        android:indeterminate="false"
-                        android:progressDrawable="@drawable/progressbar"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginBottom="20dp"
-                    android:layout_weight="1">
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center"
-                        android:layout_marginBottom="10dp">
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:src="@drawable/filter"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="에어컨필터"
-                            android:textSize="20dp"
-                            android:textStyle="bold"
-                            android:textColor="@color/black"
-                            android:layout_marginLeft="5dp" />
-                    </LinearLayout>
-
-                    <ProgressBar
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:id="@+id/engDateProgs2"
-                        android:scaleY="0.5"
-                        android:indeterminate="false"
-                        android:progressDrawable="@drawable/progressbar"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginBottom="10dp"
-                    android:layout_weight="1">
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center"
-                        android:layout_marginBottom="10dp">
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:src="@drawable/wheel"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="타이어"
-                            android:textSize="20dp"
-                            android:textStyle="bold"
-                            android:textColor="@color/black"
-                            android:layout_marginLeft="5dp"/>
-                    </LinearLayout>
-
-                    <ProgressBar
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:id="@+id/engDateProgs3"
-                        android:scaleY="0.5"
-                        android:indeterminate="false"
-                        android:progressDrawable="@drawable/progressbar"/>
-                </LinearLayout>
-            </LinearLayout>
-
             ///////////////////////////////////////////////////////////////////////////
 
             <LinearLayout
@@ -444,7 +335,8 @@
                 android:orientation="horizontal"
                 style="@style/card"
                 android:layout_marginTop="20dp"
-                android:padding="15dp">
+                android:padding="15dp"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="match_parent"

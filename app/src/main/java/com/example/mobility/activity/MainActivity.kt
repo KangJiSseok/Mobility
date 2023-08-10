@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        title = "모빌리티 관리 앱"
+        title = "카레"
 
         //회원가입 시작
         binding.btnGotoSignup.setOnClickListener {
@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
             } else {
-                Toast.makeText(baseContext, "이메일형식이 아닙니다.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(baseContext, "이메일 형식이 아닙니다.", Toast.LENGTH_SHORT).show()
             }
         }
     }
