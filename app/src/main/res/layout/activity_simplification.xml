@@ -15,18 +15,25 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginHorizontal="35dp">
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:id="@+id/car_name"
                     android:text="Loading..."
                     android:textSize="34dp"
                     android:textStyle="bold"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="15dp"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginHorizontal="35dp" />
+                    android:textColor="@color/black" />
+                <CheckBox
+                    android:id="@+id/alarmCheck"
+                    android:layout_gravity="center"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -224,7 +231,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 style="@style/card"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="30dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

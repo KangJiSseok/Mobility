@@ -2,24 +2,50 @@ package com.example.mobility.activity
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
+import android.app.AlarmManager
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationManagerCompat
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.emptyPreferences
+import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.lifecycleScope
 import com.example.mobility.MyApplication
+import com.example.mobility.NotificationReceiver
 import com.example.mobility.R
 import com.example.mobility.databinding.ActivitySimplificationBinding
+import com.example.mobility.model.DataStoreKey
 import com.example.mobility.model.ItemData
+import com.example.mobility.model.settingsDataStore
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.Calendar
 
@@ -30,10 +56,13 @@ class SimplificationActivity : AppCompatActivity() {
     lateinit var binding: ActivitySimplificationBinding
     private var shortAnimationDuration: Int = 0
     private var backPressedtime: Long = 0
+    private lateinit var alarmManager:AlarmManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySimplificationBinding.inflate(layoutInflater)
         shortAnimationDuration = resources.getInteger(android.R.integer.config_longAnimTime)
+        alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         setContentView(binding.root)
 
 
@@ -83,11 +112,64 @@ class SimplificationActivity : AppCompatActivity() {
             val intent = Intent(this, RepairInfoActivity::class.java)
             startActivity(intent)
         }
+
+        binding.alarmCheck.setOnCheckedChangeListener { _, isCheked ->
+            if (isCheked) {
+                if (NotificationManagerCompat.from(this).areNotificationsEnabled()
+                ) {
+                    Log.d("alarm","${data.CarInfo["lastDate"]}")
+                    setNotification(data.CarInfo["lastDate"]!!)
+                } else {
+                    Snackbar.make(
+                        binding.root, "알림 허용 권한이 필요합니다.",
+                        Snackbar.ANIMATION_MODE_SLIDE
+                    )
+                        .setAction("확인") {
+                            val intent = when {
+                                Build.VERSION.SDK_INT >= Build.VERSION_CODES.O -> {
+                                    Intent().apply {
+                                        action = Settings.ACTION_APP_NOTIFICATION_SETTINGS
+                                        putExtra(Settings.EXTRA_APP_PACKAGE, packageName)
+                                    }
+
+                                }
+                                Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP -> {
+                                    Intent().apply {
+                                        action = "android.settings.APP_NOTIFICATION_SETTINGS"
+                                        putExtra("app_package", packageName)
+                                        putExtra("app_uid", applicationInfo?.uid)
+                                    }
+                                }
+                                else -> {
+                                    Intent().apply {
+                                        action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+                                        addCategory(Intent.CATEGORY_DEFAULT)
+                                        data = Uri.parse("package:$packageName")
+                                    }
+                                }
+                            }
+                            startActivity(intent)
+                        }.show()
+                    binding.alarmCheck.isChecked = false
+                }
+            } else {
+                Log.d("alarm","cancel")
+                cancelNotification()
+            }
+        }
     }
 
     override fun onResume() {
         super.onResume()
         binding.layoutLoding.visibility = View.VISIBLE
+        CoroutineScope(Dispatchers.IO).launch {
+            getUserNotificationState().collect { state ->
+                withContext(Dispatchers.Main) {
+                    binding.alarmCheck.isChecked = state
+                    Log.d("check","get ${state}")
+                }
+            }
+        }
         //ㅂㅣ동기로 처리
         CoroutineScope(Dispatchers.Main).launch {
             val documents = withContext(Dispatchers.IO){
@@ -150,6 +232,14 @@ class SimplificationActivity : AppCompatActivity() {
                         binding.layoutLoding.visibility = View.GONE
                     }
                 })
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        CoroutineScope(Dispatchers.IO).launch {
+            saveUserNotificationState(binding.alarmCheck.isChecked)
+            Log.d("check","save")
         }
     }
 
@@ -284,4 +374,60 @@ class SimplificationActivity : AppCompatActivity() {
             System.exit(0)
         }
     }
+
+    private fun setNotification(date: String){
+//        val intent = Intent(this, NotificationReceiver::class.java)
+        val intent2 = Intent(this, NotificationReceiver::class.java)
+
+//        val pendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+//            PendingIntent.getBroadcast(this,111,intent,PendingIntent.FLAG_MUTABLE )
+//        } else {
+//            PendingIntent.getBroadcast(this,111,intent,PendingIntent.FLAG_UPDATE_CURRENT )
+//        }
+
+        val pendingIntent2 = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            PendingIntent.getBroadcast(this,222,intent2, PendingIntent.FLAG_MUTABLE )
+        } else {
+            PendingIntent.getBroadcast(this,222,intent2, PendingIntent.FLAG_UPDATE_CURRENT )
+        }
+
+        val calender = Calendar.getInstance()
+        val alarmDate = "$date 18:00:00"
+        val sf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+        calender.time = sf.parse(alarmDate)
+        calender.add(Calendar.DATE, 14)
+
+//        alarmManager.set(AlarmManager.RTC, calender.timeInMillis, pendingIntent); //한번만
+        alarmManager.setInexactRepeating(AlarmManager.RTC, calender.timeInMillis, 1000*60*60*24*3, pendingIntent2) // 14일뒤, 3일 반복
+    }
+
+    private fun cancelNotification(){
+
+        val intent = Intent(this, NotificationReceiver::class.java)
+
+        val pendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            PendingIntent.getBroadcast(this,222,intent, PendingIntent.FLAG_MUTABLE )
+        } else {
+            PendingIntent.getBroadcast(this,222,intent, PendingIntent.FLAG_UPDATE_CURRENT )
+        }
+
+        alarmManager.cancel(pendingIntent)
+    }
+
+    private suspend fun saveUserNotificationState(state: Boolean) {
+        settingsDataStore.edit { pref ->
+            pref[DataStoreKey.IS_NOTIFICATION_ON] = state
+        }
+    }
+
+    private suspend fun getUserNotificationState(): Flow<Boolean> = settingsDataStore.data
+        .catch { e ->
+            if (e is IOException) {
+                emit(emptyPreferences())
+            } else {
+                throw e
+            }
+        }.map { prefs ->
+            prefs[DataStoreKey.IS_NOTIFICATION_ON] ?: false
+        }
 }
