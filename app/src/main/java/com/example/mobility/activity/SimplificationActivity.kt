@@ -103,7 +103,7 @@ class SimplificationActivity : AppCompatActivity() {
                 binding.updateDate.text = "업데이트한지 ${diffDate(lastDate)}일이 지났습니다."
             }
             else {
-                binding.neededUpdate.visibility = android.view.View.GONE
+                binding.neededUpdate.visibility = View.GONE
             }
 
             var car = data.CarInfo["model"].toString()

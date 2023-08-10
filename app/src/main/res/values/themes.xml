@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Mobility" parent="Theme.Material3.Light">
+    <style name="Base.Theme.Mobility" parent="Theme.Material3.Light.NoActionBar">
         <!-- Customize your light theme here. -->
          <item name="colorPrimary">#00E676</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
